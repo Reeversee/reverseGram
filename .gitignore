@@ -1,0 +1,16 @@
+TMessagesProj/.externalNativeBuild/
+TMessagesProj/src/main/java/com/exteragram/messenger/boost/
+.gradle/
+.idea/
+build/
+.cxx/
+obj/
+
+output-metadata.json
+local.properties
+API_KEYS
+
+*.hprof
+*.iml
+*.apk
+*.so
