@@ -11,6 +11,7 @@ package org.telegram.messenger;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -28,8 +29,6 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 
 import androidx.collection.LongSparseArray;
-
-import com.exteragram.messenger.boost.filter.ZalgoFilter;
 
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.tgnet.ConnectionsManager;
@@ -545,6 +544,7 @@ public class ContactsController extends BaseController {
         });
     }
 
+    @SuppressLint("Range")
     private boolean checkContactsInternal() {
         boolean reload = false;
         try {
@@ -2849,12 +2849,6 @@ public class ContactsController extends BaseController {
         /*if ((firstName == null || firstName.length() == 0) && (lastName == null || lastName.length() == 0)) {
             return LocaleController.getString("HiddenName", R.string.HiddenName);
         }*/
-        if (firstName != null) {
-            firstName = (String) ZalgoFilter.filterMessage(firstName.trim());
-        }
-        if (lastName != null) {
-            lastName = (String) ZalgoFilter.filterMessage(lastName.trim());
-        }
         StringBuilder result = new StringBuilder((firstName != null ? firstName.length() : 0) + (lastName != null ? lastName.length() : 0) + 1);
         if (LocaleController.nameDisplayOrder == 1) {
             if (firstName != null && firstName.length() > 0) {

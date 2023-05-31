@@ -21,7 +21,6 @@ import android.animation.ValueAnimator;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -43,8 +42,6 @@ import org.telegram.messenger.AndroidUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.exteragram.messenger.ExteraConfig;
 
 /**
  * This is a utility class to add swipe to dismiss and drag & drop support to RecyclerView.

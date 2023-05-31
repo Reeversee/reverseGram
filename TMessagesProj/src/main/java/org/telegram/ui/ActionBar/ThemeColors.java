@@ -3,12 +3,11 @@ package org.telegram.ui.ActionBar;
 import static org.telegram.ui.ActionBar.Theme.*;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.util.SparseArray;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import java.util.HashMap;
 
@@ -635,7 +634,7 @@ public class ThemeColors {
         defaultColors[key_chat_outTextSelectionCursor] = 0xFF419FE8;
         defaultColors[key_chat_outBubbleLocationPlaceholder] = 0x1e307311;
         defaultColors[key_chat_inBubbleLocationPlaceholder] = 0x1e506373;
-        defaultColors[key_chat_BlurAlpha] = ExteraConfig.forceBlur ? 0xCF000000 : 0xFF000000;
+        defaultColors[key_chat_BlurAlpha] = ReverseConfig.forceBlur ? 0xCF000000 : 0xFF000000;
 
         defaultColors[key_statisticChartSignature] = 0x7f252529;
         defaultColors[key_statisticChartSignatureAlpha] = 0x7f252529;

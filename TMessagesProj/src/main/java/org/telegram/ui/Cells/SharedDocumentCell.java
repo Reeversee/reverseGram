@@ -57,8 +57,8 @@ import java.io.File;
 import java.util.Date;
 import java.util.Locale;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class SharedDocumentCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
 
@@ -749,7 +749,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     }
 
     private void drawDivider(Canvas canvas) {
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             canvas.drawLine(AndroidUtilities.dp(72), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
         }
     }

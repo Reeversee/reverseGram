@@ -32,9 +32,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.camera.CameraXUtils;
-import com.exteragram.messenger.utils.CrashlyticsUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.camera.CameraXUtils;
+import com.reversegram.messenger.utils.CrashlyticsUtils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -337,8 +337,8 @@ public class ApplicationLoader extends Application {
         AndroidUtilities.runOnUIThread(() -> {
             firebaseAnalytics = FirebaseAnalytics.getInstance(this);
             firebaseCrashlytics = FirebaseCrashlytics.getInstance();
-            firebaseAnalytics.setAnalyticsCollectionEnabled(ExteraConfig.useGoogleAnalytics);
-            firebaseCrashlytics.setCrashlyticsCollectionEnabled(ExteraConfig.useGoogleCrashlytics);
+            firebaseAnalytics.setAnalyticsCollectionEnabled(ReverseConfig.useGoogleAnalytics);
+            firebaseCrashlytics.setCrashlyticsCollectionEnabled(ReverseConfig.useGoogleCrashlytics);
             CrashlyticsUtils.logEvents(applicationContext);
         });
     }

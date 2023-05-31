@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -88,7 +88,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         groupInfoContainer.setPadding(AndroidUtilities.dp(8), AndroidUtilities.dp(8), AndroidUtilities.dp(8), AndroidUtilities.dp(8));
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(44));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(44));
         groupInfoContainer.addView(avatarImageView, LayoutHelper.createFrame(44, 44));
         groupInfoContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6), 0, ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.3f))));
         groupInfoContainer.setOnClickListener(view -> {

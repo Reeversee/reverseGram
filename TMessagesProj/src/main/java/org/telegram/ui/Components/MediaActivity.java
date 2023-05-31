@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
@@ -154,7 +153,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             }
         };
         avatarImageView.getImageReceiver().setAllowDecodeSingleFrame(true);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(42));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(42));
         avatarImageView.setPivotX(0);
         avatarImageView.setPivotY(0);
         AvatarDrawable avatarDrawable = new AvatarDrawable();

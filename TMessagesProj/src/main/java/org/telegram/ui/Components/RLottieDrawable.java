@@ -17,7 +17,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -45,8 +44,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
-
-import com.exteragram.messenger.ExteraConfig;
 
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
 

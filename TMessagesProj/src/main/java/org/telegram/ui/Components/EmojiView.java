@@ -136,8 +136,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class EmojiView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -815,7 +815,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             box.addView(clear, LayoutHelper.createFrame(36, 36, Gravity.RIGHT | Gravity.TOP));
 
-            if ((type != 1 || allowAnimatedEmoji && UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) && !ExteraConfig.hideCategories) {
+            if ((type != 1 || allowAnimatedEmoji && UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) && !ReverseConfig.hideCategories) {
                 categoriesListView = new StickerCategoriesListView(context, null, StickerCategoriesListView.CategoriesType.DEFAULT, resourcesProvider) {
                     @Override
                     public void selectCategory(int categoryIndex) {
@@ -2311,15 +2311,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         };
         backspaceButton.setHapticFeedbackEnabled(true);
         backspaceButton.setImageResource(R.drawable.smiles_tab_clear);
-        backspaceButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_emojiPanelBackspace), PorterDuff.Mode.MULTIPLY));
+        backspaceButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_emojiPanelBackspace), PorterDuff.Mode.MULTIPLY));
         backspaceButton.setScaleType(ImageView.ScaleType.CENTER);
         backspaceButton.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
         backspaceButton.setFocusable(true);
-        backspaceButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        backspaceButton.setOnClickListener(v -> {
 
-            }
         });
 
         bulletinContainer = new FrameLayout(context);
@@ -2477,7 +2474,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 @SuppressLint("NewApi")
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    if (ExteraConfig.squareFab) {
+                    if (ReverseConfig.squareFab) {
                         outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(16));
                     } else {
                         outline.setOval(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
@@ -2486,7 +2483,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             backspaceButton.setPadding(0, 0, AndroidUtilities.dp(2), 0);
             backspaceButton.setBackground(drawable);
-            backspaceButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
+            backspaceButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
             backspaceButton.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
             backspaceButton.setFocusable(true);
             bottomTabContainer.addView(backspaceButton, LayoutHelper.createFrame(40 - 4, 40 - 4, Gravity.LEFT | Gravity.TOP, 10, 0, 10, 0));
@@ -3681,7 +3678,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         private Paint dividerPaint;
         @Override
         protected void onDraw(Canvas canvas) {
-            if (divider && !ExteraConfig.disableDividers) {
+            if (divider && !ReverseConfig.disableDividers) {
                 if (dividerPaint == null) {
                     dividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                     dividerPaint.setStrokeWidth(1);
@@ -5259,12 +5256,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             gifTabs.setBackgroundColor(getThemedColor(Theme.key_chat_emojiPanelBackground));
         }
         if (backspaceButton != null) {
+            backspaceButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
             if (emojiSearchField == null) {
                 Theme.setSelectorDrawableColor(backspaceButton.getBackground(), getThemedColor(Theme.key_chat_emojiPanelBackground), false);
                 Theme.setSelectorDrawableColor(backspaceButton.getBackground(), getThemedColor(Theme.key_chat_emojiPanelBackground), true);
-                backspaceButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
-            } else {
-                backspaceButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_emojiPanelBackspace), PorterDuff.Mode.MULTIPLY));
             }
         }
         if (stickerSettingsButton != null) {

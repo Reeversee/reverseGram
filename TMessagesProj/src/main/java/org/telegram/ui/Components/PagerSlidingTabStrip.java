@@ -15,7 +15,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -27,11 +26,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -212,7 +210,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tab.setGravity(Gravity.CENTER);
         RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(getThemedColor(Theme.key_chat_emojiBottomPanelIcon), Theme.RIPPLE_MASK_CIRCLE_TO_BOUND_EDGE);
         Theme.setRippleDrawableForceSoftware(rippleDrawable);
-        if (ExteraConfig.tabStyle < 3) tab.setBackground(rippleDrawable);
+        if (ReverseConfig.tabStyle < 3) tab.setBackground(rippleDrawable);
         tab.setText(text);
         tab.setOnClickListener(v -> {
             if (pager.getAdapter() instanceof IconTabProvider) {
@@ -220,7 +218,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                     return;
                 }
             }
-            pager.setCurrentItem(position, false);
+            pager.setCurrentItem(position, true);
         });
         tab.setPadding(AndroidUtilities.dp(18), 0, AndroidUtilities.dp(18), 0);
         tabsContainer.addView(tab, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, 10, 0, 10, 0));
@@ -314,13 +312,13 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             if (indicatorHeight != 0) {
                 rectPaint.setColor(indicatorColor);
                 AndroidUtilities.rectTmp.set(lineLeft, height - indicatorHeight, lineRight, height);
-                if (ExteraConfig.tabStyle != 2) {
-                    if (ExteraConfig.tabStyle >= 3) {
+                if (ReverseConfig.tabStyle != 2) {
+                    if (ReverseConfig.tabStyle >= 3) {
                         rectPaint.setAlpha(0x2F);
-                        int sideBound = (ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(8) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(10) : 0);
-                        AndroidUtilities.rectTmp.set(lineLeft - sideBound, ExteraConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 14 : 15) : (height - indicatorHeight), lineRight + sideBound, ExteraConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 14 : 15) : height);
+                        int sideBound = (ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(8) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(10) : 0);
+                        AndroidUtilities.rectTmp.set(lineLeft - sideBound, ReverseConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 14 : 15) : (height - indicatorHeight), lineRight + sideBound, ReverseConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 14 : 15) : height);
                     }
-                    float r = ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(8) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(30) : indicatorHeight / 2f;
+                    float r = ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(8) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(30) : indicatorHeight / 2f;
                     canvas.drawRoundRect(AndroidUtilities.rectTmp, r, r, rectPaint);
                 }
             }

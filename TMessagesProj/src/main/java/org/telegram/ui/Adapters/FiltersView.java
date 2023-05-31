@@ -3,7 +3,6 @@ package org.telegram.ui.Adapters;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -51,7 +50,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class FiltersView extends RecyclerListView {
 
@@ -750,12 +749,12 @@ public class FiltersView extends RecyclerListView {
                         Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
                         avatarImageView.setImageDrawable(combinedDrawable);
                     } else {
-                        avatarImageView.getImageReceiver().setRoundRadius(ExteraConfig.getAvatarCorners(32));
+                        avatarImageView.getImageReceiver().setRoundRadius(ReverseConfig.getAvatarCorners(32));
                         avatarImageView.getImageReceiver().setForUserOrChat(user, thumbDrawable);
                     }
                 } else if (data.chat instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) data.chat;
-                    avatarImageView.getImageReceiver().setRoundRadius(ExteraConfig.getAvatarCorners(32));
+                    avatarImageView.getImageReceiver().setRoundRadius(ReverseConfig.getAvatarCorners(32));
                     avatarImageView.getImageReceiver().setForUserOrChat(chat, thumbDrawable);
                 }
             } else {

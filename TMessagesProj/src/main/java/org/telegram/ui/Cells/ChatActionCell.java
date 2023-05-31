@@ -86,7 +86,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Stack;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private final static boolean USE_PREMIUM_GIFT_LOCAL_STICKER = false;
@@ -318,7 +318,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.canDrawInParent = canDrawInParent;
         this.themeDelegate = themeDelegate;
         imageReceiver = new ImageReceiver(this);
-        imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(AndroidUtilities.roundMessageSize, true));
+        imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(AndroidUtilities.roundMessageSize, true));
         avatarDrawable = new AvatarDrawable();
         TAG = DownloadController.getInstance(currentAccount).generateObserverTag();
 
@@ -436,7 +436,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             } else {
                 imageReceiver.setImage(ImageLocation.getForDocument((TLRPC.Document) messageObject.photoThumbsObject), "150_150_wallpaper" + action.wallpaper.id + ChatBackgroundDrawable.hash(action.wallpaper.settings), null, null, ChatBackgroundDrawable.createThumb(action.wallpaper), 0, null, action.wallpaper, 1);
             }
-            imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(stickerSize * 0.7f, true));
+            imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(stickerSize * 0.7f, true));
 
             float uploadingInfoProgress = getUploadingInfoProgress(messageObject);
             if (uploadingInfoProgress == 1f) {
@@ -573,7 +573,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         } else if (messageObject.type == MessageObject.TYPE_ACTION_PHOTO) {
             imageReceiver.setAllowStartLottieAnimation(true);
             imageReceiver.setDelegate(null);
-            imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(AndroidUtilities.roundMessageSize, true));
+            imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(AndroidUtilities.roundMessageSize, true));
             imageReceiver.setAutoRepeatCount(1);
             long id = messageObject.getDialogId();
             avatarDrawable.setInfo(id, null, null);
@@ -961,7 +961,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             giftRectSize = Math.min((int) (AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() * 0.6f : AndroidUtilities.displaySize.x * 0.6f), AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight() - AndroidUtilities.statusBarHeight - AndroidUtilities.dp(64));
             stickerSize = giftRectSize - AndroidUtilities.dp(106);
             if (messageObject.type == MessageObject.TYPE_SUGGEST_PHOTO || messageObject.type == MessageObject.TYPE_ACTION_WALLPAPER) {
-                imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(stickerSize * 0.7f, true));
+                imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(stickerSize * 0.7f, true));
             } else {
                 imageReceiver.setRoundRadius(0);
             }
@@ -1074,7 +1074,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     }
                 } else {
                     text = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
-                    if (currentMessageObject.messageOwner != null && ExteraConfig.showActionTimestamps) {
+                    if (currentMessageObject.messageOwner != null && ReverseConfig.showActionTimestamps) {
                         if (currentMessageObject.currentEvent != null || currentMessageObject.messageOwner.action != null) {
                             boolean d = text.charAt(text.length() - 1) == ':';
                             long date = currentMessageObject.messageOwner.date;

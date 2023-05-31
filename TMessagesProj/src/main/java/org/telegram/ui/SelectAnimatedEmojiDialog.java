@@ -26,7 +26,6 @@ import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
@@ -60,7 +59,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -4134,7 +4133,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
 
         private void createCategoriesListView() {
-            if (categoriesListView != null || getContext() == null || ExteraConfig.hideCategories && type != TYPE_AVATAR_CONSTRUCTOR) {
+            if (categoriesListView != null || getContext() == null || ReverseConfig.hideCategories && type != TYPE_AVATAR_CONSTRUCTOR) {
                 return;
             }
             if (type != TYPE_REACTIONS && type != TYPE_SET_DEFAULT_REACTION && type != TYPE_EMOJI_STATUS && type != TYPE_AVATAR_CONSTRUCTOR) {

@@ -22,7 +22,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -45,7 +44,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import androidx.annotation.NonNull;
 
@@ -559,7 +558,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     super.invalidate(l, t, r, b);
                 }
             };
-            avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(56));
+            avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(56));
             avatarDrawable.setInfo(5, null, null);
             avatarImage.setImageDrawable(avatarDrawable);
             frameLayout.addView(avatarImage, LayoutHelper.createFrame(56, 56, Gravity.TOP | (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT), LocaleController.isRTL ? 0 : 24, 20, LocaleController.isRTL ? 24 : 0, 12));
@@ -572,7 +571,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 protected void onDraw(Canvas canvas) {
                     if (avatarImage != null && avatarImage.getImageReceiver().hasNotThumb()) {
                         paint.setAlpha((int) (0x55 * avatarImage.getImageReceiver().getCurrentAlpha() * avatarProgressView.getAlpha()));
-                        canvas.drawRoundRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), ExteraConfig.getAvatarCorners(getMeasuredWidth(), true), ExteraConfig.getAvatarCorners(getMeasuredWidth(), true), paint);
+                        canvas.drawRoundRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), ReverseConfig.getAvatarCorners(getMeasuredWidth(), true), ReverseConfig.getAvatarCorners(getMeasuredWidth(), true), paint);
                     }
                 }
             };

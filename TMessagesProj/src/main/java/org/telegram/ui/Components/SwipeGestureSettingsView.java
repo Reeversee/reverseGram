@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 
 import androidx.core.graphics.ColorUtils;
-
-import com.exteragram.messenger.ExteraConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;

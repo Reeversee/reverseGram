@@ -54,7 +54,7 @@ import org.telegram.ui.TopicsFragment;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -160,7 +160,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             }
         }
         avatarImageView.setContentDescription(LocaleController.getString("AccDescrProfilePicture", R.string.AccDescrProfilePicture));
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(42));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(42));
         addView(avatarImageView);
         if (avatarClickable) {
             avatarImageView.setOnClickListener(v -> {
@@ -909,7 +909,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         avatarDrawable.setInfo(chat);
         if (avatarImageView != null) {
             avatarImageView.setForUserOrChat(chat, avatarDrawable);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(chat != null && chat.forum ? 42 * 0.65f : 42));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(chat != null && chat.forum ? 42 * 0.65f : 42));
         }
     }
 
@@ -969,7 +969,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             avatarDrawable.setInfo(chat);
             if (avatarImageView != null) {
                 avatarImageView.setForUserOrChat(chat, avatarDrawable);
-                avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(chat.forum ? 42 * 0.65f : 42));
+                avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(chat.forum ? 42 * 0.65f : 42));
             }
         }
     }

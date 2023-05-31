@@ -8,7 +8,6 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
@@ -35,7 +34,7 @@ import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -503,7 +502,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             setPadding(padding, padding / 2, padding, padding / 2);
 
             avatar = new SimpleAvatarView(context);
-            avatar.setAvatarCorners(ExteraConfig.getAvatarCorners(AVATAR_SIZE_DP));
+            avatar.setAvatarCorners(ReverseConfig.getAvatarCorners(AVATAR_SIZE_DP));
             addView(avatar, LayoutHelper.createFrame(AVATAR_SIZE_DP, AVATAR_SIZE_DP));
 
             LinearLayout textRow = new LinearLayout(context);

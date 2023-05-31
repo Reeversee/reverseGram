@@ -68,8 +68,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class CallLogActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -554,7 +554,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 			@SuppressLint("NewApi")
 			@Override
 			public void getOutline(View view, Outline outline) {
-				if (ExteraConfig.squareFab) {
+				if (ReverseConfig.squareFab) {
 					outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
 				} else {
 					outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));

@@ -23,7 +23,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
-        android:label="@string/exteraAppName"
+        android:label="@string/reverseAppName"
         android:theme="@style/Theme.TMessages.Start"
         android:name=".ApplicationLoader"
         android:hardwareAccelerated="@bool/useHardwareAcceleration"

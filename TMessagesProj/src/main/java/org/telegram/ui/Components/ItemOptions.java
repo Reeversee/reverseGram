@@ -20,7 +20,7 @@ import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
@@ -227,7 +227,7 @@ public class ItemOptions {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                if (!ExteraConfig.useLNavigation) {
+                if (!ReverseConfig.useLNavigation) {
                     canvas.drawColor(dim);
 
                     if (cachedBitmap != null && scrimView.getParent() instanceof View) {

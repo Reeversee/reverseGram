@@ -41,7 +41,7 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import androidx.viewpager.widget.ViewPager;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
@@ -2020,7 +2020,7 @@ public class LNavigation extends FrameLayout implements INavigationLayout, Float
         int a = Theme.dividerPaint.getAlpha();
         if (alpha > a) alpha = a;
         Theme.dividerPaint.setAlpha(alpha);
-        if (!ExteraConfig.disableDividers)
+        if (!ReverseConfig.disableDividers)
             canvas.drawLine(0, y, getMeasuredWidth(), y, Theme.dividerPaint);
         Theme.dividerPaint.setAlpha(a);
     }
@@ -2279,7 +2279,7 @@ public class LNavigation extends FrameLayout implements INavigationLayout, Float
                 if (clipRoundForeground) {
                     canvas.restore();
                 }
-                if (actionBarHeight != 0 && !ExteraConfig.disableDividers)
+                if (actionBarHeight != 0 && !ReverseConfig.disableDividers)
                     canvas.drawLine(0, actionBarHeight + 1, getMeasuredWidth(), actionBarHeight + 1, Theme.dividerPaint);
                 return result;
             }

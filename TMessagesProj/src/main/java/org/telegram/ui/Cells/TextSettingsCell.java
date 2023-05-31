@@ -37,7 +37,7 @@ import org.telegram.ui.Components.RLottieImageView;
 
 import java.util.ArrayList;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class TextSettingsCell extends FrameLayout {
 
@@ -350,7 +350,7 @@ public class TextSettingsCell extends FrameLayout {
         valueTextView.setAlpha(1f - drawLoadingProgress);
         super.dispatchDraw(canvas);
 
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             int offset = AndroidUtilities.dp(imageView.getVisibility() == View.VISIBLE ? 71 : 20);
             canvas.drawLine(LocaleController.isRTL ? 0 : offset, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? offset : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }

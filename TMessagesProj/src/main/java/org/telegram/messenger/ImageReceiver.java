@@ -26,7 +26,6 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Keep;
@@ -44,8 +43,6 @@ import org.telegram.ui.Components.RecyclableDrawable;
 import org.telegram.ui.Components.VectorAvatarThumbDrawable;
 
 import java.util.ArrayList;
-
-import com.exteragram.messenger.ExteraConfig;
 
 public class ImageReceiver implements NotificationCenter.NotificationCenterDelegate {
 

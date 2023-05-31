@@ -29,7 +29,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.Switch;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class AvailableReactionCell extends FrameLayout {
     private SimpleTextView textView;
@@ -153,7 +153,7 @@ public class AvailableReactionCell extends FrameLayout {
             l = pad;
         }
 
-        if (!ExteraConfig.disableDividers) canvas.drawLine(getPaddingLeft() + l, getHeight() - w, getWidth() - getPaddingRight() - r, getHeight() - w, Theme.dividerPaint);
+        if (!ReverseConfig.disableDividers) canvas.drawLine(getPaddingLeft() + l, getHeight() - w, getWidth() - getPaddingRight() - r, getHeight() - w, Theme.dividerPaint);
     }
 
     @Override

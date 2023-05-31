@@ -18,17 +18,15 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Switch;
 
 import java.util.ArrayList;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class TextCheckbox2Cell extends FrameLayout {
 
@@ -288,7 +286,7 @@ public class TextCheckbox2Cell extends FrameLayout {
             float animatedRad = rad * animationProgress;
             canvas.drawCircle(cx, cy, animatedRad, animationPaint);
         }
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(64), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }

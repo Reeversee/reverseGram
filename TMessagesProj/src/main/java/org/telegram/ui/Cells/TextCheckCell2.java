@@ -22,7 +22,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -70,7 +70,7 @@ public class TextCheckCell2 extends FrameLayout {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
-                    if (!ExteraConfig.disableDividers)
+                    if (!ReverseConfig.disableDividers)
                         canvas.drawLine(0, AndroidUtilities.dp(14), 0, getMeasuredHeight()- AndroidUtilities.dp(14), Theme.dividerPaint);
                 }
             };
@@ -269,7 +269,7 @@ public class TextCheckCell2 extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(20), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }

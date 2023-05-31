@@ -14,7 +14,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -46,7 +45,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
 
@@ -99,7 +98,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             avatarDrawable = new AvatarDrawable(resourcesProvider);
 
             avatarImageView = new BackupImageView(context);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(46));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(46));
             addView(avatarImageView, LayoutHelper.createFrame(46, 46, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 14, 9, LocaleController.isRTL ? 14 : 0, 0));
 
             nameTextView = new SimpleTextView(context) {
@@ -268,7 +267,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         @Override
         protected void onDraw(Canvas canvas) {
-            if (needDivider && !ExteraConfig.disableDividers) {
+            if (needDivider && !ReverseConfig.disableDividers) {
                 canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(70), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(70) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }

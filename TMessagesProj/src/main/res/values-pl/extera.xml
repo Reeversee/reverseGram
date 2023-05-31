@@ -33,7 +33,6 @@
     <string name="TabStylePills">Pigułki</string>
     <string name="ActionBarTitleUsername">Nazwa użytkownika</string>
     <string name="ActionBarTitleName">Imię</string>
-    <string name="MainScreenSetupInfo">Większość funkcji wymaga ponownego uruchomienia klienta w celu poprawnego działania.</string>
     <string name="IconPack">Ikony</string>
     <string name="SolarIcons">Używaj ikon „Solar”</string>
     <string name="ForceBlur">Wymuś rozmycie</string>
@@ -68,7 +67,6 @@ CameraX wspierana jest tylko na
     <string name="CameraQuality">Jakość aparatu</string>
     <string name="DisableNumberRounding">Wyłącz zaokrąglanie liczb</string>
     <string name="FormatTimeWithSeconds">Formatuj czas z sekundami</string>
-    <string name="DisableProximitySensor">Wyłącz czujnik zbliżeniowy</string>
     <string name="TabletMode">Tryb tabletu</string>
     <string name="DownloadSpeedBoost">Zwiększ szybkość pobierania</string>
     <string name="UploadSpeedBoost">Zwiększ szybkość wysyłania</string>
@@ -143,9 +141,6 @@ CameraX wspierana jest tylko na
     <string name="ConfirmCall">Potwierdź połączenie</string>
     <string name="CallTo">Zadzwonić do **%1$s**?</string>
     <string name="AppIconGradient">Gradient</string>
-    <string name="AppIconGlow">Poświata</string>
     <string name="AppIconSpace">Kosmos</string>
     <string name="AppIconWinter">Zima</string>
-    <string name="AppIconVK">VK</string>
-    <string name="AppIconRed">RedEbalo</string>
 </resources>

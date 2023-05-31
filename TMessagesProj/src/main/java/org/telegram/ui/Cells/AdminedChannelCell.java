@@ -32,7 +32,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class AdminedChannelCell extends FrameLayout {
 
@@ -51,7 +51,7 @@ public class AdminedChannelCell extends FrameLayout {
 
         avatarDrawable = new AvatarDrawable();
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(48));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(48));
         addView(avatarImageView, LayoutHelper.createFrame(48, 48, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 12 + padding, 6, LocaleController.isRTL ? 12 + padding : 0, 6));
 
         if (needCheck) {

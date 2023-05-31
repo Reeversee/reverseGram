@@ -36,7 +36,7 @@ import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class UserCell2 extends FrameLayout {
 
@@ -79,7 +79,7 @@ public class UserCell2 extends FrameLayout {
         avatarDrawable = new AvatarDrawable();
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(48));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(48));
         addView(avatarImageView, LayoutHelper.createFrame(48, 48, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 7 + padding, 11, LocaleController.isRTL ? 7 + padding : 0, 0));
 
         nameTextView = new SimpleTextView(context) {
@@ -308,7 +308,7 @@ public class UserCell2 extends FrameLayout {
             avatarImageView.setImageDrawable(avatarDrawable);
         }
 
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(currentChat != null && currentChat.forum ? 48 * 0.65f : 48));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(currentChat != null && currentChat.forum ? 48 * 0.65f : 48));
 
         if (imageView.getVisibility() == VISIBLE && currentDrawable == 0 || imageView.getVisibility() == GONE && currentDrawable != 0) {
             imageView.setVisibility(currentDrawable == 0 ? GONE : VISIBLE);

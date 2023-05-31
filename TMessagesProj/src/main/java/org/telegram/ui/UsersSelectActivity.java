@@ -76,8 +76,8 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 import java.util.ArrayList;
 
@@ -145,7 +145,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
                     continue;
                 }
                 top = child.getBottom();
-                if (!ExteraConfig.disableDividers) canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(72), top, width - (LocaleController.isRTL ? AndroidUtilities.dp(72) : 0), top, Theme.dividerPaint);
+                if (!ReverseConfig.disableDividers) canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(72), top, width - (LocaleController.isRTL ? AndroidUtilities.dp(72) : 0), top, Theme.dividerPaint);
             }
         }
 
@@ -772,7 +772,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             @SuppressLint("NewApi")
             @Override
             public void getOutline(View view, Outline outline) {
-                if (ExteraConfig.squareFab) {
+                if (ReverseConfig.squareFab) {
                     outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
                 } else {
                     outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));

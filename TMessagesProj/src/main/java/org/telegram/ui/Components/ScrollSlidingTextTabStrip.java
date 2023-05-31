@@ -30,7 +30,7 @@ import android.widget.TextView;
 import androidx.annotation.Keep;
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -131,13 +131,13 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         this.resourcesProvider = resourcesProvider;
 
         selectorDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
-        float rad = AndroidUtilities.dpf2(ExteraConfig.tabStyle == 3 ? 8 : ExteraConfig.tabStyle == 4 ? 30 : 3);
-        if (ExteraConfig.tabStyle == 1 ||ExteraConfig.tabStyle >= 3) {
+        float rad = AndroidUtilities.dpf2(ReverseConfig.tabStyle == 3 ? 8 : ReverseConfig.tabStyle == 4 ? 30 : 3);
+        if (ReverseConfig.tabStyle == 1 || ReverseConfig.tabStyle >= 3) {
             selectorDrawable.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
         } else {
             selectorDrawable.setCornerRadii(new float[]{rad, rad, rad, rad, 0, 0, 0, 0});
         }
-        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey, resourcesProvider), ExteraConfig.tabStyle >= 3 ? 0x2F : 0xFF));
+        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey, resourcesProvider), ReverseConfig.tabStyle >= 3 ? 0x2F : 0xFF));
 
 
         setFillViewport(true);
@@ -284,7 +284,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         };
             tab.setWillNotDraw(false);
             tab.setGravity(Gravity.CENTER);
-            if (ExteraConfig.tabStyle < 3)
+            if (ReverseConfig.tabStyle < 3)
                 tab.setBackground(Theme.createSelectorDrawable(Theme.getColor(selectorColorKey, resourcesProvider), 3));
             tab.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
             tab.setSingleLine(true);
@@ -352,7 +352,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         activeTextColorKey = active;
         unactiveTextColorKey = unactive;
         selectorColorKey = selector;
-        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey, resourcesProvider), ExteraConfig.tabStyle >= 3 ? 0x2F : 0xFF));
+        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey, resourcesProvider), ReverseConfig.tabStyle >= 3 ? 0x2F : 0xFF));
     }
 
     public int getCurrentTabId() {
@@ -387,8 +387,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             selectorDrawable.setAlpha((int) (255 * tabsContainer.getAlpha()));
             float x = indicatorX + indicatorXAnimationDx;
             float w = x + indicatorWidth + indicatorWidthAnimationDx;
-            selectorDrawable.setBounds((int) x - (ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0),ExteraConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 17 : 18) : height - AndroidUtilities.dp(4), (int) w + (ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0),ExteraConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 17 : 18) : height);
-            if (ExteraConfig.tabStyle != 2)
+            selectorDrawable.setBounds((int) x - (ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ReverseConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 17 : 18) : height - AndroidUtilities.dp(4), (int) w + (ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ReverseConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 17 : 18) : height);
+            if (ReverseConfig.tabStyle != 2)
                 selectorDrawable.draw(canvas);
         }
         return result;

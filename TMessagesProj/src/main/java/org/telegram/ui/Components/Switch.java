@@ -26,8 +26,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.util.StateSet;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
@@ -35,9 +33,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import androidx.annotation.Keep;
 
-import com.exteragram.messenger.ExteraConfig;
-
-import java.lang.reflect.Method;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -378,7 +374,7 @@ public class Switch extends View {
         float y;
         int width = AndroidUtilities.dp(31);
         int thumb = AndroidUtilities.dp(20);
-        if (ExteraConfig.newSwitchStyle) {
+        if (ReverseConfig.newSwitchStyle) {
             x = 0;
             y = getMeasuredHeight() / 2 - thumb / 2;
         } else {
@@ -449,7 +445,7 @@ public class Switch extends View {
             paint.setColor(color);
             paint2.setColor(color);
 
-            if (ExteraConfig.newSwitchStyle) {
+            if (ReverseConfig.newSwitchStyle) {
                 rectF.set(x, y, getMeasuredWidth(), getMeasuredHeight() / 2 + thumb / 2);
                 canvasToDraw.drawRoundRect(rectF, AndroidUtilities.dpf2(14), AndroidUtilities.dpf2(14), paint);
                 canvasToDraw.drawCircle(tx, ty, AndroidUtilities.dpf2(9), paint);
@@ -503,13 +499,13 @@ public class Switch extends View {
             alpha = (int) (a1 + (a2 - a1) * colorProgress);
             paint.setColor(((alpha & 0xff) << 24) | ((red & 0xff) << 16) | ((green & 0xff) << 8) | (blue & 0xff));
 
-            if (ExteraConfig.newSwitchStyle) {
+            if (ReverseConfig.newSwitchStyle) {
                 canvasToDraw.drawCircle(tx, ty, AndroidUtilities.dp(2) * progress + AndroidUtilities.dp(5), paint);
             } else {
                 canvasToDraw.drawCircle(tx, ty, AndroidUtilities.dp(8), paint);
             }
 
-            if (a == 0 && !ExteraConfig.newSwitchStyle) {
+            if (a == 0 && !ReverseConfig.newSwitchStyle) {
                 if (iconDrawable != null) {
                     iconDrawable.setBounds(tx - iconDrawable.getIntrinsicWidth() / 2, ty - iconDrawable.getIntrinsicHeight() / 2, tx + iconDrawable.getIntrinsicWidth() / 2, ty + iconDrawable.getIntrinsicHeight() / 2);
                     iconDrawable.draw(canvasToDraw);

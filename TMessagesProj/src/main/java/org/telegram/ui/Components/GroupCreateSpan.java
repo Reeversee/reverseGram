@@ -16,7 +16,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -38,9 +37,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
-import androidx.core.graphics.ColorUtils;
-
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class GroupCreateSpan extends View {
 
@@ -173,7 +170,7 @@ public class GroupCreateSpan extends View {
         }
 
         imageReceiver = new ImageReceiver();
-        imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(32));
+        imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(32));
         imageReceiver.setParentView(this);
         imageReceiver.setImageCoords(0, 0, AndroidUtilities.dp(32), AndroidUtilities.dp(32));
 

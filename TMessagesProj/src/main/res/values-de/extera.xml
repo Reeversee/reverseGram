@@ -33,7 +33,6 @@
     <string name="TabStylePills">Pillenförmig</string>
     <string name="ActionBarTitleUsername">Nutzername</string>
     <string name="ActionBarTitleName">Vorname</string>
-    <string name="MainScreenSetupInfo">Die meisten Funktionen erfordern einen Neustart der Anwendung, um korrekt zu funktionieren.</string>
     <string name="IconPack">Symbole</string>
     <string name="SolarIcons">\"Solar\"-Symbole verwenden</string>
     <string name="ForceBlur">Unschärfe erzwingen</string>
@@ -68,7 +67,6 @@ CameraX wird nur auf
     <string name="CameraQuality">Kameraqualität</string>
     <string name="DisableNumberRounding">Zahlen nicht runden</string>
     <string name="FormatTimeWithSeconds">Zeit mit Sekunden formatieren</string>
-    <string name="DisableProximitySensor">Näherungssensor deaktivieren</string>
     <string name="TabletMode">Tablet-Modus</string>
     <string name="DownloadSpeedBoost">Beschleunigtes Herunterladen</string>
     <string name="UploadSpeedBoost">Beschleunigtes Hochladen</string>
@@ -143,9 +141,6 @@ CameraX wird nur auf
     <string name="ConfirmCall">Anruf bestätigen</string>
     <string name="CallTo">Anruf an **%1$s**?</string>
     <string name="AppIconGradient">Farbverlauf</string>
-    <string name="AppIconGlow">Glow</string>
     <string name="AppIconSpace">Weltall</string>
     <string name="AppIconWinter">Winter</string>
-    <string name="AppIconVK">VK</string>
-    <string name="AppIconRed">RedEbalo</string>
 </resources>

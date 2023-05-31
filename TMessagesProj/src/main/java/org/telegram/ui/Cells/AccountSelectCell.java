@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -32,7 +31,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class AccountSelectCell extends FrameLayout {
 
@@ -51,7 +50,7 @@ public class AccountSelectCell extends FrameLayout {
         avatarDrawable.setTextSize(AndroidUtilities.dp(12));
 
         imageView = new BackupImageView(context);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(36));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(36));
         addView(imageView, LayoutHelper.createFrame(36, 36, Gravity.LEFT | Gravity.TOP, 10, 10, 0, 0));
 
         textView = new TextView(context);

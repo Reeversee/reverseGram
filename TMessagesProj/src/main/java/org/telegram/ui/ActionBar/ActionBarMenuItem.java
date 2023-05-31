@@ -49,7 +49,6 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -59,7 +58,6 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -77,7 +75,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ActionBarMenuItem extends FrameLayout {
 
@@ -2058,12 +2056,12 @@ public class ActionBarMenuItem extends FrameLayout {
                         Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
                         avatarImageView.setImageDrawable(combinedDrawable);
                     } else {
-                        avatarImageView.getImageReceiver().setRoundRadius(ExteraConfig.getAvatarCorners(32));
+                        avatarImageView.getImageReceiver().setRoundRadius(ReverseConfig.getAvatarCorners(32));
                         avatarImageView.getImageReceiver().setForUserOrChat(user, thumbDrawable);
                     }
                 } else if (data.chat instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) data.chat;
-                    avatarImageView.getImageReceiver().setRoundRadius(ExteraConfig.getAvatarCorners(32));
+                    avatarImageView.getImageReceiver().setRoundRadius(ReverseConfig.getAvatarCorners(32));
                     avatarImageView.getImageReceiver().setForUserOrChat(chat, thumbDrawable);
                 }
             } else if (data.filterType == FiltersView.FILTER_TYPE_ARCHIVE) {

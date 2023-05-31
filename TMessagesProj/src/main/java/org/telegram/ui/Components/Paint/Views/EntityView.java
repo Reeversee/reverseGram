@@ -22,8 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import com.exteragram.messenger.ExteraConfig;
-
 public class EntityView extends FrameLayout {
     private final static List<Integer> STICKY_ANGLES = Arrays.asList(
             -90, 0, 90, 180

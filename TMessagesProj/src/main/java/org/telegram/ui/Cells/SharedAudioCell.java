@@ -42,7 +42,7 @@ import org.telegram.ui.Components.MediaActionDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.FilteredSearchView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class SharedAudioCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
 
@@ -698,7 +698,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         radialProgress.setOverlayImageAlpha(showNameProgress);
         radialProgress.draw(canvas);
 
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             if (LocaleController.isRTL) {
                 canvas.drawLine(0, getHeight() - 1, getWidth() - AndroidUtilities.dp(72) - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
             } else {

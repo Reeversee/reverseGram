@@ -19,7 +19,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class DividerCell extends View {
 
@@ -50,7 +50,7 @@ public class DividerCell extends View {
             paint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
         }
 
-        if (!ExteraConfig.disableDividers) canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), paint);
+        if (!ReverseConfig.disableDividers) canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), paint);
     }
 
     public void setForceDarkTheme(boolean forceDarkTheme) {

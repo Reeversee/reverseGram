@@ -29,7 +29,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.TopicsFragment;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class PullForegroundDrawable {
 
@@ -227,12 +227,12 @@ public class PullForegroundDrawable {
             float outBackgroundRadius = outRadius + (outRadius * bounceP) + (cell.getWidth() - outRadius) * (1f - outProgress);
 
             if (!(accentRevalProgress == 1f || accentRevalProgressOut == 1)) {
-                canvas.drawRoundRect(cX - outBackgroundRadius, cY - outBackgroundRadius, cX + outBackgroundRadius, cY + outBackgroundRadius, ExteraConfig.getAvatarCorners(outBackgroundRadius * 2, true), ExteraConfig.getAvatarCorners(outBackgroundRadius * 2, true), backgroundPaint);
+                canvas.drawRoundRect(cX - outBackgroundRadius, cY - outBackgroundRadius, cX + outBackgroundRadius, cY + outBackgroundRadius, ReverseConfig.getAvatarCorners(outBackgroundRadius * 2, true), ReverseConfig.getAvatarCorners(outBackgroundRadius * 2, true), backgroundPaint);
             }
 
             circleClipPath.reset();
             rectF.set(cX - outBackgroundRadius, cY - outBackgroundRadius, cX + outBackgroundRadius, cY + outBackgroundRadius);
-            circleClipPath.addRoundRect(rectF, ExteraConfig.getAvatarCorners(outBackgroundRadius * 2, true), ExteraConfig.getAvatarCorners(outBackgroundRadius * 2, true), Path.Direction.CW);
+            circleClipPath.addRoundRect(rectF, ReverseConfig.getAvatarCorners(outBackgroundRadius * 2, true), ReverseConfig.getAvatarCorners(outBackgroundRadius * 2, true), Path.Direction.CW);
             canvas.clipPath(circleClipPath);
         }
 
@@ -240,26 +240,26 @@ public class PullForegroundDrawable {
             if (accentRevalProgressOut > accentRevalProgress) {
                 canvas.save();
                 canvas.translate((cX - smallCircleX) * (outProgress), (cY - smallCircleY) * (outProgress));
-                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgressOut, smallCircleY - cell.getWidth() * accentRevalProgressOut, smallCircleX + cell.getWidth() * accentRevalProgressOut, smallCircleY + cell.getWidth() * accentRevalProgressOut, ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), backgroundPaint);
+                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgressOut, smallCircleY - cell.getWidth() * accentRevalProgressOut, smallCircleX + cell.getWidth() * accentRevalProgressOut, smallCircleY + cell.getWidth() * accentRevalProgressOut, ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), backgroundPaint);
                 canvas.restore();
             }
             if (accentRevalProgress > 0f) {
                 canvas.save();
                 canvas.translate((cX - smallCircleX) * (outProgress), (cY - smallCircleY) * (outProgress));
-                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgress, smallCircleY - cell.getWidth() * accentRevalProgress, smallCircleX + cell.getWidth() * accentRevalProgress, smallCircleY + cell.getWidth() * accentRevalProgress, ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), paintBackgroundAccent);
+                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgress, smallCircleY - cell.getWidth() * accentRevalProgress, smallCircleX + cell.getWidth() * accentRevalProgress, smallCircleY + cell.getWidth() * accentRevalProgress, ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), paintBackgroundAccent);
                 canvas.restore();
             }
         } else {
             if (accentRevalProgress > accentRevalProgressOut) {
                 canvas.save();
                 canvas.translate((cX - smallCircleX) * (outProgress), (cY - smallCircleY) * (outProgress));
-                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgress, smallCircleY - cell.getWidth() * accentRevalProgress, smallCircleX + cell.getWidth() * accentRevalProgress, smallCircleY + cell.getWidth() * accentRevalProgress, ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), paintBackgroundAccent);
+                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgress, smallCircleY - cell.getWidth() * accentRevalProgress, smallCircleX + cell.getWidth() * accentRevalProgress, smallCircleY + cell.getWidth() * accentRevalProgress, ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgress * 2, true), paintBackgroundAccent);
                 canvas.restore();
             }
             if (accentRevalProgressOut > 0f) {
                 canvas.save();
                 canvas.translate((cX - smallCircleX) * (outProgress), (cY - smallCircleY) * (outProgress));
-                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgressOut, smallCircleY - cell.getWidth() * accentRevalProgressOut, smallCircleX + cell.getWidth() * accentRevalProgressOut, smallCircleY + cell.getWidth() * accentRevalProgressOut, ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), ExteraConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), backgroundPaint);
+                canvas.drawRoundRect(smallCircleX - cell.getWidth() * accentRevalProgressOut, smallCircleY - cell.getWidth() * accentRevalProgressOut, smallCircleX + cell.getWidth() * accentRevalProgressOut, smallCircleY + cell.getWidth() * accentRevalProgressOut, ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), ReverseConfig.getAvatarCorners(cell.getWidth() * accentRevalProgressOut * 2, true), backgroundPaint);
                 canvas.restore();
             }
         }

@@ -24,7 +24,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.SpannableStringBuilder;
@@ -71,7 +70,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class PollVotesAlert extends BottomSheet {
 
@@ -287,7 +286,7 @@ public class PollVotesAlert extends BottomSheet {
             avatarDrawable = new AvatarDrawable();
 
             avatarImageView = new BackupImageView(context);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(36));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(36));
             addView(avatarImageView, LayoutHelper.createFrame(36, 36, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 14, 6, LocaleController.isRTL ? 14 : 0, 0));
 
             nameTextView = new SimpleTextView(context);

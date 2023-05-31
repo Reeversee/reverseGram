@@ -34,7 +34,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
@@ -113,7 +113,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         addView(shadowView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 70, Gravity.LEFT | Gravity.BOTTOM));
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.getImageReceiver().setRoundRadius(ExteraConfig.getAvatarCorners(64));
+        avatarImageView.getImageReceiver().setRoundRadius(ReverseConfig.getAvatarCorners(64));
         addView(avatarImageView, LayoutHelper.createFrame(64, 64, Gravity.LEFT | Gravity.BOTTOM, 16, 0, 0, 67));
 
         nameTextView = new SimpleTextView(context) {
@@ -246,7 +246,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         });
         addView(darkThemeView, LayoutHelper.createFrame(48, 48, Gravity.RIGHT | Gravity.BOTTOM, 0, 0, 6, 90));
 
-        if (Theme.getEventType() == 0 && ExteraConfig.eventType != 2 || ExteraConfig.forceSnow) {
+        if (Theme.getEventType() == 0 && ReverseConfig.eventType != 2 || ReverseConfig.forceSnow) {
             snowflakesEffect = new SnowflakesEffect(0);
             snowflakesEffect.setColorKey(Theme.key_chats_menuName);
         }
@@ -654,7 +654,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             animatedStatus.animate().alpha(1).setDuration(200).start();
             nameTextView.setDrawablePadding(AndroidUtilities.dp(4));
             status.set(emojiStatusId, true);
-        } else if (ExteraConfig.isExteraDev(user)) {
+        } else if (ReverseConfig.isExteraDev(user)) {
             animatedStatus.animate().alpha(1).setDuration(200).start();
             nameTextView.setDrawablePadding(AndroidUtilities.dp(2));
             if (exteraArrow == null) {
@@ -677,7 +677,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         }
         animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
         status.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
-        if (!ExteraConfig.hidePhoneNumber) {
+        if (!ReverseConfig.hidePhoneNumber) {
             phoneTextView.setText(PhoneFormat.getInstance().format("+" + user.phone));
         } else if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
             phoneTextView.setText("@" + UserObject.getPublicUsername(user));

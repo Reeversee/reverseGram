@@ -18,6 +18,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.PowerManager;
@@ -45,12 +47,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -261,6 +262,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         fragment.activity = activity;
         instance = fragment;
         VoIPWindowView windowView = new VoIPWindowView(activity, !transitionFromPip) {
+
+            private Path clipPath = new Path();
+            private RectF rectF = new RectF();
+
             @Override
             public boolean dispatchKeyEvent(KeyEvent event) {
                 if (fragment.isFinished || fragment.switchingToPip) {
@@ -281,6 +286,29 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                     }
                 }
                 return super.dispatchKeyEvent(event);
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                if (fragment.switchingToPip && getAlpha() != 0) {
+                    float width = fragment.callingUserTextureView.getWidth() * fragment.callingUserTextureView.getScaleX();
+                    float height = fragment.callingUserTextureView.getHeight() * fragment.callingUserTextureView.getScaleY();
+                    float padX = (fragment.callingUserTextureView.getWidth() - width) / 2;
+                    float padY = (fragment.callingUserTextureView.getHeight() - height) / 2;
+                    float x = fragment.callingUserTextureView.getX() + padX;
+                    float y = fragment.callingUserTextureView.getY() + padY;
+                    canvas.save();
+                    clipPath.rewind();
+                    rectF.set(x, y, x + width, y + height);
+                    float round = AndroidUtilities.dp(4);
+                    clipPath.addRoundRect(rectF, round, round, Path.Direction.CW);
+                    clipPath.close();
+                    canvas.clipPath(clipPath);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                } else {
+                    super.dispatchDraw(canvas);
+                }
             }
         };
         instance.deviceIsLocked = ((KeyguardManager) activity.getSystemService(Context.KEYGUARD_SERVICE)).inKeyguardRestrictedInputMode();
@@ -1139,8 +1167,8 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         notificationsLocker.lock();
         AndroidUtilities.runOnUIThread(() -> {
             windowView.setAlpha(1f);
+            windowView.invalidate();
             Animator animator = createPiPTransition(true);
-
             backIcon.setAlpha(0f);
             emojiLayout.setAlpha(0f);
             statusLayout.setAlpha(0f);
@@ -1289,7 +1317,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             if (!currentUserCameraFloatingLayout.measuredAsFloatingMode) {
                 currentUserTextureView.setScreenshareMiniProgress(v, false);
             }
-
+            windowView.invalidate();
             callingUserPhotoView.setScaleX(callingUserScale);
             callingUserPhotoView.setScaleY(callingUserScale);
             callingUserPhotoView.setTranslationX(tx);
@@ -2047,7 +2075,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             bottomButton.setData(R.drawable.calls_unmute, Color.WHITE, ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.12f)), LocaleController.getString("VoipMute", R.string.VoipMute), false, animated);
         }
         currentUserCameraFloatingLayout.setMuted(service.isMicMute(), animated);
-        if (ExteraConfig.useSolarIcons) {
+        if (ReverseConfig.useSolarIcons) {
             bottomButton.setCrossOffset(-AndroidUtilities.dpf2(3.5f));
             bottomButton.setCrossOffsetY(-AndroidUtilities.dpf2(6f));
         }
@@ -2084,8 +2112,8 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             } else {
                 bottomButton.setData(R.drawable.calls_video, Color.BLACK, Color.WHITE, LocaleController.getString("VoipStartVideo", R.string.VoipStartVideo), true, animated);
             }
-            bottomButton.setCrossOffset(-AndroidUtilities.dpf2(3.5f + (ExteraConfig.useSolarIcons ? 3.5f : 0)));
-            bottomButton.setCrossOffsetY(-AndroidUtilities.dpf2(ExteraConfig.useSolarIcons ? 3.5f : 0));
+            bottomButton.setCrossOffset(-AndroidUtilities.dpf2(3.5f + (ReverseConfig.useSolarIcons ? 3.5f : 0)));
+            bottomButton.setCrossOffsetY(-AndroidUtilities.dpf2(ReverseConfig.useSolarIcons ? 3.5f : 0));
             bottomButton.setOnClickListener(view -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     activity.requestPermissions(new String[]{Manifest.permission.CAMERA}, 102);

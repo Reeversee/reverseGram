@@ -15,8 +15,6 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-import com.exteragram.messenger.ExteraConfig;
-
 public class ZoomControlView extends View {
 
     private Drawable minusDrawable;

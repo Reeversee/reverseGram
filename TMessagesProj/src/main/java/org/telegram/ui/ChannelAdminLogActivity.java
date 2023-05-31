@@ -13,7 +13,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -65,7 +63,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.telegram.messenger.AndroidUtilities;
@@ -1020,7 +1018,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             public void onDraw(Canvas canvas) {
                 int bottom = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
                 canvas.drawRect(0, bottom, getMeasuredWidth(), getMeasuredHeight(), Theme.chat_composeBackgroundPaint);
-                if (!ExteraConfig.disableDividers)
+                if (!ReverseConfig.disableDividers)
                     canvas.drawLine(0, bottom, getMeasuredWidth(), bottom, Theme.dividerPaint);
             }
         };

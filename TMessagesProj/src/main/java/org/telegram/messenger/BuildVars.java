@@ -10,12 +10,12 @@ package org.telegram.messenger;
 
 import android.os.Build;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class BuildVars {
 
     public static boolean DEBUG_VERSION = BuildConfig.BUILD_TYPE.equals("debug");
-    public static boolean LOGS_ENABLED = ExteraConfig.getLogging();
+    public static boolean LOGS_ENABLED = ReverseConfig.getLogging();
     public static boolean DEBUG_PRIVATE_VERSION = DEBUG_VERSION;
     public static boolean USE_CLOUD_STRINGS = true;
     public static boolean CHECK_UPDATES = false;
@@ -39,12 +39,14 @@ public class BuildVars {
         BUILD_VERSION = BuildConfig.VERSION_CODE;
         BUILD_VERSION_STRING = BuildConfig.VERSION_NAME;
 
-        APP_ID = BuildConfig.APP_ID;
         // Obtain your own APP_ID at https://core.telegram.org/api/obtaining_api_id
-        APP_HASH = BuildConfig.APP_HASH;
+        APP_ID = BuildConfig.APP_ID;
+
         // Obtain your own APP_HASH at https://core.telegram.org/api/obtaining_api_id
-        SMS_HASH = isBetaApp() ? "2P1CNXYRAK6" : "UfajQkYoxTu";
+        APP_HASH = BuildConfig.APP_HASH;
+
         // Using our SMS_HASH you will not be able to get the SMS Retriever to work, generate your own keys with https://raw.githubusercontent.com/googlearchive/android-credentials/master/sms-verification/bin/sms_retriever_hash_v9.sh
+        SMS_HASH = isBetaApp() ? "2P1CNXYRAK6" : "UfajQkYoxTu";
     }
 
     public static boolean useInvoiceBilling() {

@@ -30,7 +30,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class TextDetailCell extends FrameLayout {
 
@@ -168,6 +168,10 @@ public class TextDetailCell extends FrameLayout {
         return textView;
     }
 
+    public String getText() {
+        return (String) textView.getText();
+    }
+
     @Override
     public void invalidate() {
         super.invalidate();
@@ -176,7 +180,7 @@ public class TextDetailCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (needDivider  && !ExteraConfig.disableDividers) {
+        if (needDivider  && !ReverseConfig.disableDividers) {
             canvas.drawLine(
                 LocaleController.isRTL ? 0 : AndroidUtilities.dp(20),
                 getMeasuredHeight() - 1,

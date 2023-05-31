@@ -28,8 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.exteragram.messenger.boost.filter.ZalgoFilter;
-import com.exteragram.messenger.utils.SystemUtils;
+import com.reversegram.messenger.utils.SystemUtils;
 
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 
@@ -558,7 +557,6 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence cs, Paint.FontMetricsInt fontMetrics, boolean createNew, int[] emojiOnly, int alignment) {
-        cs = ZalgoFilter.filterMessage(cs);
         if (cs == null || cs.length() == 0) {
             return cs;
         }

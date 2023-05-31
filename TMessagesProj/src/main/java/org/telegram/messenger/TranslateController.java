@@ -10,8 +10,6 @@ import android.view.inputmethod.InputMethodSubtype;
 
 import androidx.annotation.Nullable;
 
-import com.exteragram.messenger.boost.encryption.EncryptionHelper;
-
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.TranslateAlert2;
@@ -66,7 +64,7 @@ public class TranslateController extends BaseController {
     }
 
     public boolean isFeatureAvailable() {
-        return isChatTranslateEnabled();
+        return  UserConfig.getInstance(currentAccount).isPremium() && isChatTranslateEnabled();
     }
 
     private Boolean chatTranslateEnabled;
@@ -106,7 +104,7 @@ public class TranslateController extends BaseController {
                 messageObject.type == MessageObject.TYPE_VOICE ||
                 messageObject.type == MessageObject.TYPE_FILE ||
                 messageObject.type == MessageObject.TYPE_MUSIC
-            ) && !TextUtils.isEmpty(messageObject.messageOwner.message) && !EncryptionHelper.isEncrypted(messageObject.messageOwner.message)
+            )
         );
     }
 

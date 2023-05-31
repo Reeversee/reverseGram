@@ -59,7 +59,7 @@ import java.util.Locale;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class SharedLinkCell extends FrameLayout {
     private final static int SPOILER_TYPE_LINK = 0,
@@ -869,7 +869,7 @@ public class SharedLinkCell extends FrameLayout {
             linkImageView.draw(canvas);
         }
 
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             if (LocaleController.isRTL) {
                 canvas.drawLine(0, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {

@@ -40,7 +40,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LocationActivity;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class SharingLiveLocationCell extends FrameLayout {
 
@@ -71,7 +71,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(42));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(42));
 
         avatarDrawable = new AvatarDrawable();
 

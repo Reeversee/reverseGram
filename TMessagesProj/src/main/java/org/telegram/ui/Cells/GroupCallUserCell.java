@@ -14,7 +14,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -34,7 +33,6 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
@@ -54,7 +52,7 @@ import org.telegram.ui.Components.WaveDrawable;
 
 import java.util.ArrayList;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class GroupCallUserCell extends FrameLayout {
 
@@ -265,7 +263,7 @@ public class GroupCallUserCell extends FrameLayout {
         setClipChildren(false);
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(46));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(46));
         addView(avatarImageView, LayoutHelper.createFrame(46, 46, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 11, 6, LocaleController.isRTL ? 11 : 0, 0));
 
         avatarProgressView = new RadialProgressView(context) {
@@ -904,7 +902,7 @@ public class GroupCallUserCell extends FrameLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             if (progressToAvatarPreview != 0) {
                 dividerPaint.setAlpha((int) ((1.0f - progressToAvatarPreview) * 255));
             } else {

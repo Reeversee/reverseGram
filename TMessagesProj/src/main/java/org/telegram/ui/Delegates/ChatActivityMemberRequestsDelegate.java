@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -67,7 +66,7 @@ public class ChatActivityMemberRequestsDelegate {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
-                    if (!ExteraConfig.disableDividers)
+                    if (!ReverseConfig.disableDividers)
                         canvas.drawLine(0, getMeasuredHeight() - AndroidUtilities.dp(2), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(2), Theme.dividerPaint);
                 }
             };

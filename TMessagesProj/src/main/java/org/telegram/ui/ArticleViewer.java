@@ -20,7 +20,6 @@ import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -180,8 +179,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import com.exteragram.messenger.ExteraConfig;
 
 public class ArticleViewer implements NotificationCenter.NotificationCenterDelegate {
 

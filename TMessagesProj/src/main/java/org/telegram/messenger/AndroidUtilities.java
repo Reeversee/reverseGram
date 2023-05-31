@@ -116,7 +116,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.internal.telephony.ITelephony;
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.FontUtils;
 import com.google.android.exoplayer2.util.Consumer;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
@@ -1734,7 +1735,7 @@ public class AndroidUtilities {
             if (!typefaceCache.containsKey(assetPath)) {
                 Typeface t = null;
                 try {
-                    if (ExteraConfig.useSystemFonts) {
+                    if (ReverseConfig.useSystemFonts) {
                         switch (assetPath) {
                             case TYPEFACE_ROBOTO_MONO:
                                 t = Typeface.MONOSPACE;
@@ -1743,10 +1744,18 @@ public class AndroidUtilities {
                                 t = Typeface.create("sans-serif-condensed", Typeface.BOLD);
                                 break;
                             case TYPEFACE_ROBOTO_MEDIUM_ITALIC:
-                                t = Build.VERSION.SDK_INT >= 28 ? Typeface.create(Typeface.SANS_SERIF, 500, true) : Typeface.create("sans-serif-medium", Typeface.ITALIC);
+                                if (FontUtils.isMediumWeightSupported()) {
+                                    t = Typeface.create("sans-serif-medium", Typeface.ITALIC);
+                                } else {
+                                    t = Typeface.create("sans-serif", Typeface.BOLD_ITALIC);
+                                }
                                 break;
                             case TYPEFACE_ROBOTO_MEDIUM:
-                                t = Build.VERSION.SDK_INT >= 28 ? Typeface.create(Typeface.SANS_SERIF, 500, false) : Typeface.create("sans-serif-medium", Typeface.NORMAL);
+                                if (FontUtils.isMediumWeightSupported()) {
+                                    t = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+                                } else {
+                                    t = Typeface.create("sans-serif", Typeface.BOLD);
+                                }
                                 break;
                             case TYPEFACE_ROBOTO_ITALIC:
                                 t = Build.VERSION.SDK_INT >= 28 ? Typeface.create(Typeface.SANS_SERIF, 400, true) : Typeface.create("sans-serif", Typeface.ITALIC);
@@ -1816,7 +1825,7 @@ public class AndroidUtilities {
     }
 
     public static int getShadowHeight() {
-        if (ExteraConfig.disableDividers) {
+        if (ReverseConfig.disableDividers) {
             return 0;
         } else if (density >= 4.0f) {
             return 3;
@@ -2268,8 +2277,8 @@ public class AndroidUtilities {
     }
 
     public static boolean isTabletInternal() {
-        if (ExteraConfig.tabletMode == 1) isTablet = true;
-        else if (ExteraConfig.tabletMode == 2) isTablet = false;
+        if (ReverseConfig.tabletMode == 1) isTablet = true;
+        else if (ReverseConfig.tabletMode == 2) isTablet = false;
         if (isTablet == null) {
             isTablet = isTabletForce();
         }

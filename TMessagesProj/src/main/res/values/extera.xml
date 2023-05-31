@@ -12,12 +12,12 @@
 -->
 
 <resources>
-    <string name="exteraAppName" translatable="false">exteraGram</string>
-    <string name="Preferences">exteraGram Preferences</string>
+    <string name="reverseAppName" translatable="false">reverseGram</string>
+    <string name="Preferences">reverseGram Preferences</string>
 
     <!-- Main Menu -->
     <string name="Links">Links</string>
-    <string name="AboutExteraDescription">Experimental Telegram client based on Official Sources!</string>
+    <string name="AboutReverseDescription">Experimental Telegram client based on Official Sources!</string>
     <string name="Channel">Channel</string>
     <string name="Crowdin">Translate</string>
     <string name="SourceCode">Source Code</string>
@@ -27,23 +27,27 @@
     <string name="AvatarCorners">Avatar Corners</string>
     <string name="AvatarCornersLeft">Square</string>
     <string name="AvatarCornersRight">Circle</string>
-    <string name="HideActionBarStatus">Hide Status</string>
-    <string name="HideAllChats">Hide \"%1$s\" Tab</string>
-    <string name="TabCounter">Tab Counter</string>
-    <string name="CenterTitle">Center Title in Action Bar</string>
+
+    <string name="ListOfChats">Chat List</string>
     <string name="ActionBarTitle">Title Text</string>
-    <string name="TabTitleStyle">Tab Title</string>
+    <string name="ActionBarTitleUsername">Username</string>
+    <string name="ActionBarTitleName">First Name</string>
+    <string name="HideActionBarStatus">Hide Status</string>
+    <string name="CenterTitle">Center Title</string>
+    <string name="ListOfChatsInfo">The title text will be replaced by the folder name when icons are enabled.</string>
+
+    <string name="TabTitleStyle">Folder Title</string>
     <string name="TabTitleStyleTextWithIcons">Names with Icons</string>
     <string name="TabTitleStyleIconsOnly">Icons only</string>
     <string name="TabTitleStyleTextOnly">Names only</string>
-    <string name="TabStyle">Tab Style</string>
+    <string name="TabStyle">Folder Style</string>
     <string name="TabStyleTextOnly">Text</string>
     <string name="TabStyleRounded">Rounded</string>
     <string name="TabStyleChips">Chips</string>
     <string name="TabStylePills">Pills</string>
-    <string name="ActionBarTitleUsername">Username</string>
-    <string name="ActionBarTitleName">First Name</string>
-    <string name="MainScreenSetupInfo">Most features require a client restart to work correctly.</string>
+    <string name="TabCounter">Notification Counter</string>
+    <string name="HideAllChats">Hide \"%1$s\" Tab</string>
+    <string name="FoldersInfo">Icons are synchronized with Telegram.</string>
 
     <string name="IconPack">Icons</string>
     <string name="SolarIcons">Use \"Solar\" Icons</string>
@@ -83,7 +87,6 @@
 
     <string name="DisableNumberRounding">Disable Number Rounding</string>
     <string name="FormatTimeWithSeconds">Format Time with Seconds</string>
-    <string name="DisableProximitySensor">Disable Proximity Sensor</string>
     <string name="TabletMode">Tablet Mode</string>
 
     <string name="DownloadSpeedBoost">Download Speed Boost</string>
@@ -96,7 +99,7 @@
     <string name="ShowIdAndDc">Show ID and DC</string>
     <string name="ShowIdAndDcInfo">Telegram APl shows IDs as they are, while the Bot API adds a minus sign for groups and -100 for supergroups, broadcast groups and channels.</string>
 
-    <string name="ArchiveOnPull">Open Archive on Pulldown</string>
+    <string name="ArchiveOnPull">Open Archive on Pull-down</string>
     <string name="DisableUnarchiveSwipe">Disable \"Unarchive\" swipe</string>
     <string name="DisableUnarchiveSwipeInfo">Swiping to the left will not remove chats from the archive.</string>
 
@@ -149,11 +152,11 @@
     <string name="VideoMessagesCameraAsk">Ask</string>
     <string name="RearCamera">Rear Camera</string>
     <string name="FrontCamera">Front Camera</string>
-    <string name="DoubleTapSeekDuration">Double Tap Seek Duration</string>
+    <string name="DoubleTapSeekDuration">Double Tap Skip Time</string>
     <string name="RememberLastUsedCamera">Remember last used Camera</string>
     <string name="RememberLastUsedCameraInfo">When recording video messages, the last used camera will be selected.</string>
     <string name="PauseOnMinimize">Auto-Pause</string>
-    <string name="PauseOnMinimizeInfo">Pauses a video playback when device is locked or exteraGram is minimized.</string>
+    <string name="PauseOnMinimizeInfo">Pauses a video playback when device is locked or reverseGram is minimized.</string>
     <string name="DisablePlayback">Disable Playback</string>
     <string name="DisablePlaybackInfo">Disables playback when volume button is pressed.</string>
 
@@ -187,7 +190,7 @@
     <string name="Details">Details</string>
     <string name="Date">Date</string>
     <string name="EditedDate">Edit Date</string>
-    <string name="ForwardedDate">Forwarding Date</string>
+    <string name="ForwardedDate">Forward Date</string>
     <string name="FileSize">File Size</string>
     <string name="FileName">File Name</string>
     <string name="FilePath">File Path</string>
@@ -198,7 +201,7 @@
 
     <!-- Other -->
     <string name="RestartRequired">Restart the App to take effect.</string>
-    <string name="ResetSettingsBulletin">**exteraGram** Preferences have been reset.</string>
+    <string name="ResetSettingsBulletin">**reverseGram** Preferences have been reset.</string>
     <string name="UserNotFound">User with this **ID** not found.</string>
     <string name="PhotoCopied">Photo copied to clipboard.</string>
 
@@ -220,13 +223,15 @@
     <string name="formatterDay24HSec" translatable="false">HH:mm:ss</string>
     <string name="formatterDay12HSec" translatable="false">h:mm:ss a</string>
 
-    <string name="AppIconGoogle" translatable="false">Google</string>
-    <string name="AppIcon480DSGN" translatable="false">480 DSGN</string>
     <string name="AppIconMonet" translatable="false">Monet</string>
     <string name="AppIconGradient">Gradient</string>
-    <string name="AppIconGlow">Glow</string>
+    <string name="AppIconAurora">Aurora</string>
+    <string name="AppIconNeo">Neo</string>
+    <string name="AppIconGoogle" translatable="false">Google</string>
+    <string name="AppIconAmethyst">Amethyst</string>
+    <string name="AppIcon480DSGN" translatable="false">480 DSGN</string>
     <string name="AppIconSpace">Space</string>
+    <string name="AppIconOrbit">Orbit</string>
+    <string name="AppIconSus">Impostor</string>
     <string name="AppIconWinter">Winter</string>
-    <string name="AppIconVK">VK</string>
-    <string name="AppIconRed">RedEbalo</string>
 </resources>

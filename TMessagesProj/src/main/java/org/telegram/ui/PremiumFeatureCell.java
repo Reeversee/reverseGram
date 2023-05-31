@@ -16,7 +16,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class PremiumFeatureCell extends FrameLayout {
 
@@ -70,7 +70,7 @@ public class PremiumFeatureCell extends FrameLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (drawDivider && !ExteraConfig.disableDividers) {
+        if (drawDivider && !ReverseConfig.disableDividers) {
             canvas.drawRect(AndroidUtilities.dp(62), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
         }
     }

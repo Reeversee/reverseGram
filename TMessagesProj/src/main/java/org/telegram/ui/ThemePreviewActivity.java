@@ -131,8 +131,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class ThemePreviewActivity extends BaseFragment implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
 
@@ -669,7 +669,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             @SuppressLint("NewApi")
             @Override
             public void getOutline(View view, Outline outline) {
-                if (ExteraConfig.squareFab) {
+                if (ReverseConfig.squareFab) {
                     outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
                 } else {
                     outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));
@@ -4491,7 +4491,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 messageObject.resetLayout();
                 messages.add(messageObject);
 
-                if (dialogId != 0) {
+                if (dialogId != 0 && serverWallpaper == null) {
                     message = new TLRPC.TL_message();
                     message.message = "";
                     messageObject = new MessageObject(currentAccount, message, true, false);

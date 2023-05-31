@@ -90,8 +90,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class GroupCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
 
@@ -801,7 +801,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             @SuppressLint("NewApi")
             @Override
             public void getOutline(View view, Outline outline) {
-                if (ExteraConfig.squareFab) {
+                if (ReverseConfig.squareFab) {
                     outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
                 } else {
                     outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));

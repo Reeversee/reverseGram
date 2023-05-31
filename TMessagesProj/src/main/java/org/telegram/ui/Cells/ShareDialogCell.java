@@ -44,7 +44,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ShareDialogCell extends FrameLayout {
 
@@ -79,10 +79,10 @@ public class ShareDialogCell extends FrameLayout {
 
         imageView = new BackupImageView(context);
         if (type == TYPE_CREATE) {
-            imageView.setRoundRadius(ExteraConfig.getAvatarCorners(48));
+            imageView.setRoundRadius(ReverseConfig.getAvatarCorners(48));
             addView(imageView, LayoutHelper.createFrame(48, 48, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 7, 0, 0));
         } else {
-            imageView.setRoundRadius(ExteraConfig.getAvatarCorners(56));
+            imageView.setRoundRadius(ReverseConfig.getAvatarCorners(56));
             addView(imageView, LayoutHelper.createFrame(56, 56, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 7, 0, 0));
         }
 
@@ -152,7 +152,7 @@ public class ShareDialogCell extends FrameLayout {
                 }
                 imageView.setForUserOrChat(user, avatarDrawable);
             }
-            imageView.setRoundRadius(ExteraConfig.getAvatarCorners(56));
+            imageView.setRoundRadius(ReverseConfig.getAvatarCorners(56));
         } else {
             user = null;
             TLRPC.Chat chat = MessagesController.getInstance(currentAccount).getChat(-uid);
@@ -165,7 +165,7 @@ public class ShareDialogCell extends FrameLayout {
             }
             avatarDrawable.setInfo(chat);
             imageView.setForUserOrChat(chat, avatarDrawable);
-            imageView.setRoundRadius(ExteraConfig.getAvatarCorners((isForum = chat != null && chat.forum) ? 56 * 0.65f : 56));
+            imageView.setRoundRadius(ReverseConfig.getAvatarCorners((isForum = chat != null && chat.forum) ? 56 * 0.65f : 56));
         }
         currentDialog = uid;
         checkBox.setChecked(checked, false);
@@ -286,7 +286,7 @@ public class ShareDialogCell extends FrameLayout {
         int radius = currentType == TYPE_CREATE ? 24 : 28;
         int radiusDp = AndroidUtilities.dp(radius);
         AndroidUtilities.rectTmp.set(cx - radiusDp, cy - radiusDp, cx + radiusDp, cy + radiusDp);
-        canvas.drawRoundRect(AndroidUtilities.rectTmp, ExteraConfig.getAvatarCorners((isForum ? radius * 2 * 0.65f : radius * 2) + 4), ExteraConfig.getAvatarCorners((isForum ? radius * 2 * 0.65f : radius * 2) + 4), Theme.checkboxSquare_checkPaint);
+        canvas.drawRoundRect(AndroidUtilities.rectTmp, ReverseConfig.getAvatarCorners((isForum ? radius * 2 * 0.65f : radius * 2) + 4), ReverseConfig.getAvatarCorners((isForum ? radius * 2 * 0.65f : radius * 2) + 4), Theme.checkboxSquare_checkPaint);
         super.onDraw(canvas);
     }
 

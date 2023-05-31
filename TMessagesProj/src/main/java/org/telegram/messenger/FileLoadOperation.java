@@ -29,7 +29,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipException;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class FileLoadOperation {
 
@@ -233,11 +233,11 @@ public class FileLoadOperation {
     }
 
     private void updateParams() {
-        if (ExteraConfig.downloadSpeedBoost == 2) {
+        if (ReverseConfig.downloadSpeedBoost == 2) {
             downloadChunkSizeBig = 1024 * 1024;
             maxDownloadRequests = 16;
             maxDownloadRequestsBig = 16;
-        } else if (ExteraConfig.downloadSpeedBoost == 1 || MessagesController.getInstance(currentAccount).getfileExperimentalParams) {
+        } else if (ReverseConfig.downloadSpeedBoost == 1 || MessagesController.getInstance(currentAccount).getfileExperimentalParams) {
             downloadChunkSizeBig = 1024 * 512;
             maxDownloadRequests = 8;
             maxDownloadRequestsBig = 8;

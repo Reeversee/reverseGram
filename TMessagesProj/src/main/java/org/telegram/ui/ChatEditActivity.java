@@ -42,7 +42,7 @@ import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -589,7 +589,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
         linearLayout1.setOrientation(LinearLayout.VERTICAL);
 
-        actionBar.setTitle(LocaleController.getString("ChannelEdit", R.string.ChannelEdit));
+        if (ChatObject.hasAdminRights(currentChat)) {
+            actionBar.setTitle(LocaleController.getString("ChannelEdit", R.string.ChannelEdit));
+        } else {
+            actionBar.setTitle(LocaleController.getString("Info", R.string.Info));
+        }
 
         avatarContainer = new LinearLayout(context);
         avatarContainer.setOrientation(LinearLayout.VERTICAL);
@@ -616,7 +620,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 super.invalidate(l, t, r, b);
             }
         };
-        avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(forum ? 56 * 0.65f : 56));
+        avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(forum ? 56 * 0.65f : 56));
 
         if (currentUser != null || ChatObject.canChangeChatInfo(currentChat)) {
             frameLayout.addView(avatarImage, LayoutHelper.createFrame(56, 56, Gravity.TOP | (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT), LocaleController.isRTL ? 0 : 24, 20, LocaleController.isRTL ? 24 : 0, 12));
@@ -629,7 +633,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 protected void onDraw(Canvas canvas) {
                     if (avatarImage != null && avatarImage.getImageReceiver().hasNotThumb()) {
                         paint.setAlpha((int) (0x55 * avatarImage.getImageReceiver().getCurrentAlpha()));
-                        canvas.drawRoundRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), ExteraConfig.getAvatarCorners(getMeasuredWidth(), true), ExteraConfig.getAvatarCorners(getMeasuredWidth(), true), paint);
+                        canvas.drawRoundRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), ReverseConfig.getAvatarCorners(getMeasuredWidth(), true), ReverseConfig.getAvatarCorners(getMeasuredWidth(), true), paint);
                     }
                 }
             };
@@ -720,7 +724,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             setAvatarCell = new TextCell(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
-                    if (!ExteraConfig.disableDividers) canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(20), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                    if (!ReverseConfig.disableDividers) canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(20), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
                 }
             };
             setAvatarCell.setBackground(Theme.getSelectorDrawable(false));

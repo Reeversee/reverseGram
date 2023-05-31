@@ -79,7 +79,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener {
 
@@ -472,7 +472,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                     onImportersChanged(query, false, true);
                     if (isApproved) {
                         Bulletin.MultiLineLayout layout = new Bulletin.MultiLineLayout(fragment.getParentActivity(), fragment.getResourceProvider());
-                        layout.imageView.setRoundRadius(ExteraConfig.getAvatarCorners(32));
+                        layout.imageView.setRoundRadius(ReverseConfig.getAvatarCorners(32));
                         layout.imageView.setForUserOrChat(user, new AvatarDrawable(user));
                         String userName = UserObject.getFirstName(user);
                         String message = isChannel

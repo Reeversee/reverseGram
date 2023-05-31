@@ -61,8 +61,8 @@ import org.telegram.ui.LaunchActivity;
 
 import java.util.ArrayList;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
 
 public class InviteMembersBottomSheet extends UsersAlertBase implements NotificationCenter.NotificationCenterDelegate {
 
@@ -269,7 +269,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             @SuppressLint("NewApi")
             @Override
             public void getOutline(View view, Outline outline) {
-                if (ExteraConfig.squareFab) {
+                if (ReverseConfig.squareFab) {
                     outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
                 } else {
                     outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));

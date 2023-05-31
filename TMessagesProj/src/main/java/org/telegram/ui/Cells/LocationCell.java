@@ -8,18 +8,14 @@
 
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -32,7 +28,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class LocationCell extends FrameLayout {
 
@@ -181,7 +177,7 @@ public class LocationCell extends FrameLayout {
         canvas.restore();
         super.onDraw(canvas);
 
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             canvas.drawLine(
                 LocaleController.isRTL ? 0 : AndroidUtilities.dp(72),
                 getHeight() - 1,

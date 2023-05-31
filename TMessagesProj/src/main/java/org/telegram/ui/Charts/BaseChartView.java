@@ -26,8 +26,6 @@ import android.view.ViewConfiguration;
 
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import com.exteragram.messenger.ExteraConfig;
-
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;

@@ -9,9 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.LongSparseArray;
-import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +45,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ReactedUsersListView extends FrameLayout {
 
@@ -408,7 +406,7 @@ public class ReactedUsersListView extends FrameLayout {
             setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, AndroidUtilities.dp(ITEM_HEIGHT_DP)));
 
             avatarView = new BackupImageView(context);
-            avatarView.setRoundRadius(ExteraConfig.getAvatarCorners(34));
+            avatarView.setRoundRadius(ReverseConfig.getAvatarCorners(34));
             addView(avatarView, LayoutHelper.createFrameRelatively(34, 34, Gravity.START | Gravity.CENTER_VERTICAL, 10, 0, 0, 0));
 
             titleView = new SimpleTextView(context) {

@@ -45,8 +45,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.FolderIcons;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.FolderIcons;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -118,7 +118,7 @@ public class FilterTabsView extends FrameLayout {
 
         public Tab(int i, String t, String e) {
             id = i;
-            title = ExteraConfig.tabIcons != 2 ? t : "";
+            title = ReverseConfig.tabIcons != 2 ? t : "";
             realTitle = t;
             emoticon = i != Integer.MAX_VALUE ? e : "\uD83D\uDCAC";
         }
@@ -149,7 +149,7 @@ public class FilterTabsView extends FrameLayout {
         }
 
         public boolean setTitle(String newTitle) {
-            newTitle = ExteraConfig.tabIcons != 2 ? newTitle : "";
+            newTitle = ReverseConfig.tabIcons != 2 ? newTitle : "";
             realTitle = newTitle;
             if (TextUtils.equals(title, newTitle)) {
                 return false;
@@ -353,12 +353,12 @@ public class FilterTabsView extends FrameLayout {
                 countWidth = (int) (countWidth + (AndroidUtilities.dp(20) - countWidth) * editingStartAnimationProgress);
             }
 
-            if (ExteraConfig.tabIcons != 2) {
+            if (ReverseConfig.tabIcons != 2) {
                 tabWidth = currentTab.iconWidth + currentTab.titleWidth + ((countWidth != 0 && !animateCounterRemove) ? countWidth + AndroidUtilities.dp(6 * (counterText != null ? 1.0f : editingStartAnimationProgress)) : 0);
             } else {
                 tabWidth = currentTab.iconWidth + ((countWidth != 0 && !animateCounterRemove) ? countWidth + AndroidUtilities.dp(6 * (counterText != null ? 1.0f : editingStartAnimationProgress)) : 0);
             }
-            float textX = ((getMeasuredWidth() - tabWidth) / 2f) + currentTab.iconWidth - (ExteraConfig.tabIcons == 0 ? AndroidUtilities.dp(2) : 0);
+            float textX = ((getMeasuredWidth() - tabWidth) / 2f) + currentTab.iconWidth - (ReverseConfig.tabIcons == 0 ? AndroidUtilities.dp(2) : 0);
             if (animateTextX) {
                 textX = textX * changeProgress + animateFromTextX * (1f - changeProgress);
             }
@@ -408,7 +408,7 @@ public class FilterTabsView extends FrameLayout {
             }
 
             int iconX = 0;
-            if (ExteraConfig.tabIcons != 1) {
+            if (ReverseConfig.tabIcons != 1) {
                 int emoticonSize = FolderIcons.getIconWidth();
                 if (!TextUtils.equals(currentTab.emoticon, currentEmoticon)) {
                     currentEmoticon = currentTab.emoticon;
@@ -474,7 +474,7 @@ public class FilterTabsView extends FrameLayout {
                 if (animateTextChange) {
                     titleWidth = animateFromTitleWidth * (1f - changeProgress) + currentTab.titleWidth * changeProgress;
                 }
-                int textSpace = AndroidUtilities.dp(ExteraConfig.tabIcons == 2 && ExteraConfig.tabStyle <= 2 ? 3 : 6);
+                int textSpace = AndroidUtilities.dp(ReverseConfig.tabIcons == 2 && ReverseConfig.tabStyle <= 2 ? 3 : 6);
                 if (animateTextChange && titleAnimateOutLayout == null) {
                     x = textX - titleXOffset + titleOffsetX + titleWidth + textSpace;
                 } else {
@@ -654,7 +654,7 @@ public class FilterTabsView extends FrameLayout {
                 countWidth = 0;
             }
             int tabWidth;
-            if (ExteraConfig.tabIcons != 2) {
+            if (ReverseConfig.tabIcons != 2) {
                 tabWidth = currentTab.iconWidth + currentTab.titleWidth + (countWidth != 0 ? countWidth + AndroidUtilities.dp(6 * (counterText != null ? 1.0f : editingStartAnimationProgress)) : 0);
             } else {
                 tabWidth = currentTab.iconWidth + (countWidth != 0 ? countWidth + AndroidUtilities.dp(6 * (counterText != null ? 1.0f : editingStartAnimationProgress)) : 0);
@@ -712,7 +712,7 @@ public class FilterTabsView extends FrameLayout {
                 }
             }
 
-            if (ExteraConfig.tabIcons != 1) {
+            if (ReverseConfig.tabIcons != 1) {
                 int iconX = (int) ((getMeasuredWidth() - tabWidth) / 2f);
 
                 if (iconX != lastIconX) {
@@ -907,7 +907,7 @@ public class FilterTabsView extends FrameLayout {
 
             int color1 = Theme.getColor(tabLineColorKey);
             int color2 = Theme.getColor(aTabLineColorKey);
-            selectorDrawable.setColor(ColorUtils.setAlphaComponent(ColorUtils.blendARGB(color1, color2, value), ExteraConfig.tabStyle >= 3 ? 0x2F : 0xFF));
+            selectorDrawable.setColor(ColorUtils.setAlphaComponent(ColorUtils.blendARGB(color1, color2, value), ReverseConfig.tabStyle >= 3 ? 0x2F : 0xFF));
 
             listView.invalidateViews();
             listView.invalidate();
@@ -1063,7 +1063,7 @@ public class FilterTabsView extends FrameLayout {
         };
         itemAnimator.setDelayAnimations(false);
         listView.setItemAnimator(itemAnimator);
-        listView.setSelectorType(ExteraConfig.tabStyle >= 3 ? 100 : 8);
+        listView.setSelectorType(ReverseConfig.tabStyle >= 3 ? 100 : 8);
         listView.setSelectorRadius(8);
         listView.setSelectorDrawableColor(Theme.getColor(selectorColorKey));
         listView.setLayoutManager(layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false) {
@@ -1120,7 +1120,7 @@ public class FilterTabsView extends FrameLayout {
             }
             TabView tabView = (TabView) view;
             if (isEditing) {
-                if (position != 0 || ExteraConfig.hideAllChats) {
+                if (position != 0 || ReverseConfig.hideAllChats) {
                     int side = AndroidUtilities.dp(6);
                     if (tabView.rect.left - side < x && tabView.rect.right + side > x) {
                         delegate.onDeletePressed(tabView.currentTab.id);
@@ -1191,6 +1191,7 @@ public class FilterTabsView extends FrameLayout {
         if (delegate != null) {
             delegate.onPageSelected(tab, scrollingForward);
             delegate.onTabSelected(tab, scrollingForward, true);
+            oldAnimatedTab = currentPosition;
         }
         scrollToChild(position);
     }
@@ -1285,6 +1286,7 @@ public class FilterTabsView extends FrameLayout {
         listView.setItemAnimator(animated ? itemAnimator : null);
         adapter.notifyDataSetChanged();
         delegate.onTabSelected(tabs.get(currentPosition), false, false);
+        oldAnimatedTab = currentPosition;
     }
 
     public void animateColorsTo(int line, int active, int unactive, int selector, int background) {
@@ -1385,12 +1387,12 @@ public class FilterTabsView extends FrameLayout {
                     indicatorX = (int) (tabView.getX() + (viewWidth - indicatorWidth) / 2);
                 }
             }
-            if (indicatorWidth != 0 && ExteraConfig.tabStyle != 2) {
+            if (indicatorWidth != 0 && ReverseConfig.tabStyle != 2) {
                 canvas.save();
                 canvas.translate(listView.getTranslationX(), 0);
                 canvas.scale(listView.getScaleX(), 1f, listView.getPivotX() + listView.getX(), listView.getPivotY());
                 updateSelector();
-                selectorDrawable.setBounds((int) indicatorX - (ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ExteraConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 17 : 18) : height - AndroidUtilities.dpr(4), (int) (indicatorX + indicatorWidth) + (ExteraConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ExteraConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ExteraConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ExteraConfig.tabStyle == 3 ? 17 : 18) : height);
+                selectorDrawable.setBounds((int) indicatorX - (ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ReverseConfig.tabStyle >= 3 ? height / 2 - AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 17 : 18) : height - AndroidUtilities.dpr(4), (int) (indicatorX + indicatorWidth) + (ReverseConfig.tabStyle == 3 ? AndroidUtilities.dp(10) : ReverseConfig.tabStyle == 4 ? AndroidUtilities.dp(12) : 0), ReverseConfig.tabStyle >= 3 ? height / 2 + AndroidUtilities.dp(ReverseConfig.tabStyle == 3 ? 17 : 18) : height);
                 selectorDrawable.draw(canvas);
                 canvas.restore();
             }
@@ -1452,7 +1454,7 @@ public class FilterTabsView extends FrameLayout {
         if (!tabs.isEmpty()) {
             int width = MeasureSpec.getSize(widthMeasureSpec) - AndroidUtilities.dp(7) - AndroidUtilities.dp(7);
             int trueTabsWidth;
-            if (!ExteraConfig.hideAllChats)  {
+            if (!ReverseConfig.hideAllChats && findDefaultTab() != null)  {
                 Tab firstTab = findDefaultTab();
                 firstTab.setTitle(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
                 int tabWith = firstTab.getWidth(false);
@@ -1521,6 +1523,8 @@ public class FilterTabsView extends FrameLayout {
         }
     }
 
+    private int oldAnimatedTab = -1;
+
     public void selectTabWithId(int id, float progress) {
         int position = idToPosition.get(id, -1);
         if (position < 0) {
@@ -1544,8 +1548,13 @@ public class FilterTabsView extends FrameLayout {
         invalidate();
         scrollToChild(position);
 
+        if ((((progress >= 0.5f && oldAnimatedTab != position) || (progress <= 0.5f && oldAnimatedTab != currentPosition)) && manualScrollingToPosition != currentPosition)) {
+            position = progress >= 0.5f ? position : currentPosition;
+            delegate.onTabSelected(tabs.get(position), currentPosition < position, true);
+            oldAnimatedTab = position;
+        }
+
         if (progress >= 1.0f) {
-            if (manualScrollingToPosition != currentPosition) delegate.onTabSelected(tabs.get(position), currentPosition < position, true);
             manualScrollingToPosition = -1;
             manualScrollingToId = -1;
             currentPosition = position;
@@ -1624,7 +1633,7 @@ public class FilterTabsView extends FrameLayout {
                 invalidated = true;
                 requestLayout();
                 allTabsWidth = 0;
-                if (!ExteraConfig.hideAllChats && findDefaultTab() != null) {
+                if (!ReverseConfig.hideAllChats && findDefaultTab() != null) {
                     findDefaultTab().setTitle(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
                 }
                 for (int b = 0; b < N; b++) {
@@ -1657,7 +1666,7 @@ public class FilterTabsView extends FrameLayout {
             listView.setItemAnimator(itemAnimator);
             adapter.notifyDataSetChanged();
             allTabsWidth = 0;
-            if (!ExteraConfig.hideAllChats) findDefaultTab().setTitle(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
+            if (!ReverseConfig.hideAllChats && findDefaultTab() != null) findDefaultTab().setTitle(LocaleController.getString("FilterAllChats", R.string.FilterAllChats));
             for (int b = 0, N = tabs.size(); b < N; b++) {
                 allTabsWidth += tabs.get(b).getWidth(true) + FolderIcons.getPaddingTab();
             }
@@ -1715,7 +1724,7 @@ public class FilterTabsView extends FrameLayout {
                 return;
             }
             ArrayList<MessagesController.DialogFilter> filters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
-            if (ExteraConfig.hideAllChats) {
+            if (ReverseConfig.hideAllChats) {
                 int defaultPosition = 0;
                 for (int i = 0; i < filters.size(); i++) {
                     if (filters.get(i).isDefault()) {
@@ -1829,7 +1838,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (!ExteraConfig.hideAllChats && (!isEditing || (viewHolder.getAdapterPosition() == 0 && tabs.get(0).isDefault && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()))) {
+            if (!ReverseConfig.hideAllChats && (!isEditing || (viewHolder.getAdapterPosition() == 0 && tabs.get(0).isDefault && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()))) {
                 return makeMovementFlags(0, 0);
             }
             return makeMovementFlags(ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, 0);
@@ -1837,7 +1846,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
-            if (!ExteraConfig.hideAllChats && ((source.getAdapterPosition() == 0 || target.getAdapterPosition() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            if (!ReverseConfig.hideAllChats && ((source.getAdapterPosition() == 0 || target.getAdapterPosition() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 return false;
             }
             adapter.swapElements(source.getAdapterPosition(), target.getAdapterPosition());
@@ -1942,9 +1951,9 @@ public class FilterTabsView extends FrameLayout {
     }
 
     public void updateSelector() {
-        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey), ExteraConfig.tabStyle >= 3 ? 0x2F : 0xFF));
-        float rad = AndroidUtilities.dpf2(ExteraConfig.tabStyle == 3 ? 8 : ExteraConfig.tabStyle == 4 ? 30 : 3);
-        if (ExteraConfig.tabStyle == 1 || ExteraConfig.tabStyle >= 3) {
+        selectorDrawable.setColor(ColorUtils.setAlphaComponent(Theme.getColor(tabLineColorKey), ReverseConfig.tabStyle >= 3 ? 0x2F : 0xFF));
+        float rad = AndroidUtilities.dpf2(ReverseConfig.tabStyle == 3 ? 8 : ReverseConfig.tabStyle == 4 ? 30 : 3);
+        if (ReverseConfig.tabStyle == 1 || ReverseConfig.tabStyle >= 3) {
             selectorDrawable.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
         } else {
             selectorDrawable.setCornerRadii(new float[]{rad, rad, rad, rad, 0, 0, 0, 0});

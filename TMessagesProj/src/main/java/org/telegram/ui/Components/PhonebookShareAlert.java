@@ -24,7 +24,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -58,7 +57,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class PhonebookShareAlert extends BottomSheet {
 
@@ -117,7 +116,7 @@ public class PhonebookShareAlert extends BottomSheet {
             avatarDrawable.setInfo(currentUser);
 
             BackupImageView avatarImageView = new BackupImageView(context);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(80));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(80));
             avatarImageView.setForUserOrChat(currentUser, avatarDrawable);
             addView(avatarImageView, LayoutHelper.createLinear(80, 80, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 32, 0, 0));
 
@@ -235,7 +234,7 @@ public class PhonebookShareAlert extends BottomSheet {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            if (needDivider && !ExteraConfig.disableDividers) {
+            if (needDivider && !ReverseConfig.disableDividers) {
                 canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(70), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(70) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }

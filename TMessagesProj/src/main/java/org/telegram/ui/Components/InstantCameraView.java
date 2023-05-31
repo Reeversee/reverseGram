@@ -66,14 +66,12 @@ import androidx.camera.core.SurfaceOrientedMeteringPointFactory;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.camera.CameraXController;
-import com.exteragram.messenger.camera.CameraXUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.camera.CameraXController;
+import com.reversegram.messenger.camera.CameraXUtils;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.util.Log;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BuildVars;
@@ -300,7 +298,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         switchCameraButton.setContentDescription(LocaleController.getString("AccDescrSwitchCamera", R.string.AccDescrSwitchCamera));
         addView(switchCameraButton, LayoutHelper.createFrame(62, 62, Gravity.LEFT | Gravity.BOTTOM, 8, 0, 0, 0));
         switchCameraButton.setOnClickListener(v -> {
-            if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+            if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                 if (!cameraReady || cameraSession == null || !cameraSession.isInitied() || cameraThread == null) {
                     return;
                 }
@@ -466,7 +464,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     }
 
     public void destroy(boolean async, final Runnable beforeDestroyRunnable) {
-        if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+        if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
             if (cameraSession != null) {
                 flashlightButton.setTag(null);
                 cameraSession.destroy();
@@ -567,7 +565,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
 
         flashlightButtonDrawable = new CrossOutDrawable(getContext(), R.drawable.flash_on, -1);
         flashlightButtonDrawable.setCrossOut(true, false);
-        if (ExteraConfig.useSolarIcons) flashlightButtonDrawable.setPaddings(0, AndroidUtilities.dp(2), 0, -AndroidUtilities.dp(2));
+        if (ReverseConfig.useSolarIcons) flashlightButtonDrawable.setPaddings(0, AndroidUtilities.dp(2), 0, -AndroidUtilities.dp(2));
         else flashlightButtonDrawable.setPaddings(AndroidUtilities.dp(5), AndroidUtilities.dp(8), AndroidUtilities.dp(5), AndroidUtilities.dp(2));
         flashlightButton.setImageDrawable(flashlightButtonDrawable);
 
@@ -587,8 +585,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             textureOverlayView.setImageResource(R.drawable.icplaceholder);
         }
         cameraReady = false;
-        if (ExteraConfig.videoMessagesCamera != 2) {
-            isFrontface = ExteraConfig.videoMessagesCamera == 0;
+        if (ReverseConfig.videoMessagesCamera != 2) {
+            isFrontface = ReverseConfig.videoMessagesCamera == 0;
         }
 
         selectedCamera = null;
@@ -662,7 +660,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     cameraThread.shutdown(0);
                     cameraThread = null;
                 }
-                if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+                if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                     if (cameraSession != null) {
                         CameraController.getInstance().close(cameraSession, null, null);
                     }
@@ -949,8 +947,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             textureOverlayView.setImageBitmap(lastBitmap);
             textureOverlayView.setAlpha(1f);
         }
-        if (ExteraConfig.rememberLastUsedCamera && ExteraConfig.videoMessagesCamera != 2) {
-            ExteraConfig.editor.putInt("videoMessagesCamera", ExteraConfig.videoMessagesCamera = isFrontface ? 1 : 0).apply();
+        if (ReverseConfig.rememberLastUsedCamera && ReverseConfig.videoMessagesCamera != 2) {
+            ReverseConfig.editor.putInt("videoMessagesCamera", ReverseConfig.videoMessagesCamera = isFrontface ? 1 : 0).apply();
         }
         isFrontface ^= true;
         cameraReady = false;
@@ -972,8 +970,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             CameraController.getInstance().close(cameraSession, null, null);
             cameraSession = null;
         }
-        if (ExteraConfig.rememberLastUsedCamera && ExteraConfig.videoMessagesCamera != 2) {
-            ExteraConfig.editor.putInt("videoMessagesCamera", ExteraConfig.videoMessagesCamera = isFrontface ? 1 : 0).apply();
+        if (ReverseConfig.rememberLastUsedCamera && ReverseConfig.videoMessagesCamera != 2) {
+            ReverseConfig.editor.putInt("videoMessagesCamera", ReverseConfig.videoMessagesCamera = isFrontface ? 1 : 0).apply();
         }
         isFrontface ^= true;
         initCamera();
@@ -1136,7 +1134,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             }
 
             surfaceTexture.setDefaultBufferSize(previewSize.getWidth(), previewSize.getHeight());
-            if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+            if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                 cameraSession = new CameraSession(selectedCamera, previewSize, pictureSize, ImageFormat.JPEG, true);
                 cameraThread.setCurrentSession(cameraSession);
                 CameraController.getInstance().openRound(cameraSession, surfaceTexture, () -> {
@@ -1543,7 +1541,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 videoEncoder.startRecording(cameraFile, EGL14.eglGetCurrentContext());
                 recording = true;
                 int orientation = 0;
-                if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+                if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                     orientation = currentSession.getCurrentOrientation();
                 } else {
                     float temp = scaleX;
@@ -2978,7 +2976,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                     cameraZoom = 1.0f;
                 }
 
-                if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+                if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                     cameraSession.setZoom(cameraZoom);
                 } else {
                     cameraXController.setZoom(cameraZoom);
@@ -2998,11 +2996,11 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             return;
         }
 
-        if (cameraZoom > 0f && !ExteraConfig.staticZoom) {
+        if (cameraZoom > 0f && !ReverseConfig.staticZoom) {
             finishZoomTransition = ValueAnimator.ofFloat(cameraZoom, 0);
             finishZoomTransition.addUpdateListener(valueAnimator -> {
                 cameraZoom = (float) valueAnimator.getAnimatedValue();
-                if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+                if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
                     cameraSession.setZoom(cameraZoom);
                 } else {
                     cameraXController.setZoom(cameraZoom);
@@ -3024,7 +3022,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     }
 
     public void enableTorch() {
-        if (!CameraXUtils.isCameraXSupported() || ExteraConfig.cameraType != 1) {
+        if (!CameraXUtils.isCameraXSupported() || ReverseConfig.cameraType != 1) {
             if (cameraSession != null) {
                 cameraSession.setTorchEnabled(flashlightButton.getTag() == null);
                 flashlightButton.setTag(flashlightButton.getTag() == null ? 1 : null);

@@ -19,7 +19,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -30,7 +29,6 @@ import android.transition.TransitionManager;
 import android.transition.TransitionSet;
 import android.transition.TransitionValues;
 import android.transition.Visibility;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.TypedValue;
@@ -57,7 +55,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -2314,7 +2312,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         addView(actionModeLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 48, Gravity.LEFT | Gravity.TOP));
 
         shadowLine = new View(context);
-        if (!ExteraConfig.disableDividers) {
+        if (!ReverseConfig.disableDividers) {
             shadowLine.setBackgroundColor(getThemedColor(Theme.key_divider));
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
             layoutParams.topMargin = AndroidUtilities.dp(48) - 1;

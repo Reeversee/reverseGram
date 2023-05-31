@@ -49,7 +49,7 @@ import org.telegram.ui.NotificationsSettingsActivity;
 
 import java.util.Locale;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ProfileSearchCell extends BaseCell implements NotificationCenter.NotificationCenterDelegate {
 
@@ -119,7 +119,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.resourcesProvider = resourcesProvider;
 
         avatarImage = new ImageReceiver(this);
-        avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(46));
+        avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(46));
         avatarDrawable = new AvatarDrawable();
 
         checkBox = new CheckBox2(context, 21, resourcesProvider);
@@ -312,7 +312,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 } else {
                     nameLeft = AndroidUtilities.dp(11);
                 }
-                updateStatus(drawCheck, ExteraConfig.isExtera(chat), null, false);
+                updateStatus(drawCheck, ReverseConfig.isExtera(chat), null, false);
             } else if (user != null) {
                 dialog_id = user.id;
                 if (!LocaleController.isRTL) {
@@ -323,7 +323,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 nameLockTop = AndroidUtilities.dp(21);
                 drawCheck = user.verified;
                 drawPremium = !savedMessages && MessagesController.getInstance(currentAccount).isPremiumUser(user);
-                updateStatus(drawCheck, ExteraConfig.isExteraDev(user), user, false);
+                updateStatus(drawCheck, ReverseConfig.isExteraDev(user), user, false);
             } else if (contact != null) {
                 if (!LocaleController.isRTL) {
                     nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
@@ -361,7 +361,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             nameString = nameString2.replace('\n', ' ');
         }
         if (nameString.length() == 0) {
-            if (ExteraConfig.hidePhoneNumber) {
+            if (ReverseConfig.hidePhoneNumber) {
                 nameString = LocaleController.getString("MobileHidden", R.string.MobileHidden);
             } else if (user != null && user.phone != null && user.phone.length() != 0) {
                 nameString = PhoneFormat.getInstance().format("+" + user.phone);
@@ -622,7 +622,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             avatarImage.setImage(null, null, avatarDrawable, null, null, 0);
         }
 
-        avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(chat != null && chat.forum ? 46 * 0.65f : 46));
+        avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(chat != null && chat.forum ? 46 * 0.65f : 46));
         if (mask != 0) {
             boolean continueUpdate = false;
             if ((mask & MessagesController.UPDATE_MASK_AVATAR) != 0 && user != null || (mask & MessagesController.UPDATE_MASK_CHAT_AVATAR) != 0 && chat != null) {
@@ -640,7 +640,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 }
             }
             if (!continueUpdate && (mask & MessagesController.UPDATE_MASK_EMOJI_STATUS) != 0 && user != null) {
-                updateStatus(user.verified, ExteraConfig.isExteraDev(user), user, true);
+                updateStatus(user.verified, ReverseConfig.isExteraDev(user), user, true);
             }
             if (!continueUpdate && ((mask & MessagesController.UPDATE_MASK_NAME) != 0 && user != null) || (mask & MessagesController.UPDATE_MASK_CHAT_NAME) != 0 && chat != null) {
                 String newName;
@@ -691,7 +691,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             return;
         }
 
-        if (useSeparator && !ExteraConfig.disableDividers) {
+        if (useSeparator && !ReverseConfig.disableDividers) {
             if (LocaleController.isRTL) {
                 canvas.drawLine(0, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {

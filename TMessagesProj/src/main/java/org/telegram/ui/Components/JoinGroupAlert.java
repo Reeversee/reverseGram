@@ -41,7 +41,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class JoinGroupAlert extends BottomSheet {
 
@@ -91,7 +91,7 @@ public class JoinGroupAlert extends BottomSheet {
         int participants_count = 0;
 
         BackupImageView avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(70));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(70));
         linearLayout.addView(avatarImageView, LayoutHelper.createLinear(70, 70, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 29, 0, 0));
 
         if (chatInvite != null) {

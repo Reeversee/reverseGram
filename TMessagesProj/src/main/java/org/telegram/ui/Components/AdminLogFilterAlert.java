@@ -14,7 +14,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,7 +24,7 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -341,7 +340,7 @@ public class AdminLogFilterAlert extends BottomSheet {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                if (!ExteraConfig.disableDividers)
+                if (!ReverseConfig.disableDividers)
                     canvas.drawLine(0, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         };

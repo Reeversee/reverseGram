@@ -18,7 +18,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.os.Build;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -56,7 +55,7 @@ import org.telegram.ui.Components.RadialProgressView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class StickerSetCell extends FrameLayout {
     private final static String LINK_PREFIX = "t.me/addstickers/";
@@ -542,7 +541,7 @@ public class StickerSetCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(71), getHeight() - 1, getWidth() - getPaddingRight() - (LocaleController.isRTL ? AndroidUtilities.dp(71) : 0), getHeight() - 1, Theme.dividerPaint);
         }
     }

@@ -35,7 +35,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-import com.exteragram.messenger.utils.SystemUtils;
+import com.reversegram.messenger.utils.SystemUtils;
 
 public class WallpaperUpdater {
 

@@ -84,12 +84,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.ExteraResources;
-import com.exteragram.messenger.utils.ChatUtils;
-import com.exteragram.messenger.utils.MonetUtils;
-import com.exteragram.messenger.preferences.MainPreferencesActivity;
-import com.exteragram.messenger.utils.UpdaterUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.ReverseResources;
+import com.reversegram.messenger.utils.ChatUtils;
+import com.reversegram.messenger.utils.MonetUtils;
+import com.reversegram.messenger.preferences.MainPreferencesActivity;
+import com.reversegram.messenger.utils.UpdaterUtils;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.appindexing.Action;
 import com.google.firebase.appindexing.FirebaseUserActions;
@@ -213,10 +213,10 @@ import java.util.regex.Pattern;
 
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
 
-    private ExteraResources res = null;
+    private ReverseResources res = null;
     @Override
     public Resources getResources() {
-        return res == null ? res = new ExteraResources(super.getResources()) : res;
+        return res == null ? res = new ReverseResources(super.getResources()) : res;
     }
     public void reloadIcons() {
         res.getActiveIconPack();
@@ -939,7 +939,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             MonetUtils.registerReceiver(this);
-            LauncherIconController.updateMonetIcon();
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
                 @Override
                 public void onViewAttachedToWindow(View v) {
@@ -953,7 +952,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             });
         }
 
-        if (ExteraConfig.checkUpdatesOnLaunch)
+        if (ReverseConfig.checkUpdatesOnLaunch)
             UpdaterUtils.checkUpdates(actionBarLayout.getFragmentStack().size() > 0 ? actionBarLayout.getFragmentStack().get(0) : layersActionBarLayout.getFragmentStack().get(0), false);
 
         BackupAgent.requestBackup(this);
@@ -1423,6 +1422,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (currentAccount != UserConfig.selectedAccount) {
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.appDidLogout);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.mainUserInfoChanged);
+            NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.didUpdateConnectionState);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.needShowAlert);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.wasUnableToFindCurrentLocation);
@@ -1442,6 +1442,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         currentAccount = UserConfig.selectedAccount;
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.appDidLogout);
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.mainUserInfoChanged);
+        NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.didUpdateConnectionState);
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.needShowAlert);
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.wasUnableToFindCurrentLocation);
@@ -5414,6 +5415,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (currentAccount != -1) {
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.appDidLogout);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.mainUserInfoChanged);
+            NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.didUpdateConnectionState);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.needShowAlert);
             NotificationCenter.getInstance(currentAccount).removeObserver(this, NotificationCenter.wasUnableToFindCurrentLocation);
@@ -5863,9 +5865,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (Theme.selectedAutoNightType == Theme.AUTO_NIGHT_TYPE_SYSTEM) {
             Theme.checkAutoNightThemeConditions();
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            LauncherIconController.updateMonetIcon();
-        }
     }
 
     @Override
@@ -5893,7 +5892,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 currentConnectionState = state;
                 updateCurrentConnectionState();
             }
-        } else if (id == NotificationCenter.mainUserInfoChanged) {
+        } else if (id == NotificationCenter.mainUserInfoChanged || id == NotificationCenter.dialogsNeedReload) {
             drawerLayoutAdapter.notifyDataSetChanged();
         } else if (id == NotificationCenter.needShowAlert) {
             final Integer reason = (Integer) args[0];
@@ -7085,7 +7084,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         showVoiceChatTooltip(mute ? UndoView.ACTION_VOIP_SOUND_MUTED : UndoView.ACTION_VOIP_SOUND_UNMUTED);
                     }
                 }
-            } else if (!ExteraConfig.disablePlayback && (!PhotoViewer.hasInstance() || !PhotoViewer.getInstance().isVisible()) && event.getRepeatCount() == 0) {
+            } else if (!ReverseConfig.disablePlayback && (!PhotoViewer.hasInstance() || !PhotoViewer.getInstance().isVisible()) && event.getRepeatCount() == 0) {
                 BaseFragment fragment = mainFragmentsStack.get(mainFragmentsStack.size() - 1);
                 if (fragment instanceof ChatActivity) {
                     if (((ChatActivity) fragment).maybePlayVisibleVideo()) {
@@ -7244,7 +7243,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         } else {
             boolean allow = true; // TODO: Make it a flag inside fragment itself, maybe BaseFragment#isDrawerOpenAllowed()?
-            if (fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof ProxyListActivity) {
+            if (fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof ProxyListActivity || fragment instanceof ProxySettingsActivity) {
                 if (mainFragmentsStack.size() == 0 || mainFragmentsStack.get(0) instanceof IntroActivity || mainFragmentsStack.get(0) instanceof LoginActivity) {
                     allow = false;
                 }
@@ -7261,7 +7260,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public boolean needAddFragmentToStack(BaseFragment fragment, INavigationLayout layout) {
         if (AndroidUtilities.isTablet()) {
-            drawerLayoutContainer.setAllowOpenDrawer(!(fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof CountrySelectActivity || fragment instanceof ProxyListActivity) && layersActionBarLayout.getView().getVisibility() != View.VISIBLE, true);
+            drawerLayoutContainer.setAllowOpenDrawer(!(fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof CountrySelectActivity || fragment instanceof ProxyListActivity || fragment instanceof ProxySettingsActivity) && layersActionBarLayout.getView().getVisibility() != View.VISIBLE, true);
             if (fragment instanceof DialogsActivity) {
                 DialogsActivity dialogsActivity = (DialogsActivity) fragment;
                 if (dialogsActivity.isMainDialogList() && layout != actionBarLayout) {
@@ -7327,7 +7326,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         } else {
             boolean allow = true;
-            if (fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof ProxyListActivity) {
+            if (fragment instanceof LoginActivity || fragment instanceof IntroActivity || fragment instanceof ProxyListActivity || fragment instanceof ProxySettingsActivity) {
                 if (mainFragmentsStack.size() == 0 || mainFragmentsStack.get(0) instanceof IntroActivity) {
                     allow = false;
                 }

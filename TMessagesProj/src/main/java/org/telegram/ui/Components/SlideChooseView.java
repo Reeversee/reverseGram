@@ -18,7 +18,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class SlideChooseView extends View {
 
@@ -259,7 +259,7 @@ public class SlideChooseView extends View {
         paint.setColor(AndroidUtilities.getTransparentColor(getThemedColor(Theme.key_switchTrackChecked), allowSlide ? 1.0f : 0.5f));
         canvas.drawCircle(cx, cy, AndroidUtilities.dp(6), paint);
         
-        if (!ExteraConfig.disableDividers && needDivider) {
+        if (!ReverseConfig.disableDividers && needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0 : AndroidUtilities.dp(21), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(21) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }

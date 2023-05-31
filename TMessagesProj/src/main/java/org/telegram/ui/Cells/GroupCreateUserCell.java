@@ -39,7 +39,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class GroupCreateUserCell extends FrameLayout {
 
@@ -87,7 +87,7 @@ public class GroupCreateUserCell extends FrameLayout {
         avatarDrawable = new AvatarDrawable();
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(46));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(46));
         addView(avatarImageView, LayoutHelper.createFrame(46, 46, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : (13 + padding), 6, LocaleController.isRTL ? (13 + padding) : 0, 0));
 
         nameTextView = new SimpleTextView(context) {
@@ -415,7 +415,7 @@ public class GroupCreateUserCell extends FrameLayout {
         }
 
 
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(currentChat != null && currentChat.forum ? 46 * 0.65f : 46));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(currentChat != null && currentChat.forum ? 46 * 0.65f : 46));
         if (currentStatus != null) {
             statusTextView.setText(currentStatus, true);
             statusTextView.setTag(Theme.key_windowBackgroundWhiteGrayText);
@@ -431,7 +431,7 @@ public class GroupCreateUserCell extends FrameLayout {
             float cx = avatarImageView.getLeft() + avatarImageView.getMeasuredWidth() / 2;
             float cy = avatarImageView.getTop() + avatarImageView.getMeasuredHeight() / 2;
             float rad = AndroidUtilities.dp(18) + AndroidUtilities.dp(4) * checkProgress;
-            canvas.drawRoundRect(cx - rad, cy - rad, cx + rad, cy + rad, ExteraConfig.getAvatarCorners(rad * 2, true), ExteraConfig.getAvatarCorners(rad * 2, true), paint);
+            canvas.drawRoundRect(cx - rad, cy - rad, cx + rad, cy + rad, ReverseConfig.getAvatarCorners(rad * 2, true), ReverseConfig.getAvatarCorners(rad * 2, true), paint);
         }
         if (drawDivider) {
             int start = AndroidUtilities.dp(LocaleController.isRTL ? 0 : 72 + padding);

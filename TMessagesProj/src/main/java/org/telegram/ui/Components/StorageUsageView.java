@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.core.graphics.ColorUtils;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -215,7 +215,7 @@ public class StorageUsageView extends FrameLayout {
             }
             calculatingTextView.setVisibility(View.GONE);
             if (totalSize > 0) {
-                divider.setVisibility(ExteraConfig.disableDividers ? GONE : VISIBLE);
+                divider.setVisibility(ReverseConfig.disableDividers ? GONE : VISIBLE);
                 textSettingsCell.setVisibility(VISIBLE);
                 telegramCacheTextView.setVisibility(View.VISIBLE);
                 telegramDatabaseTextView.setVisibility(GONE);

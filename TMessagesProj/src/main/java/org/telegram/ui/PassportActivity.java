@@ -25,7 +25,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
@@ -142,7 +141,7 @@ import java.util.TimerTask;
 
 import javax.crypto.Cipher;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class PassportActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -1528,7 +1527,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         linearLayout2.addView(passwordAvatarContainer, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 100));
 
         BackupImageView avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(64));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(64));
         passwordAvatarContainer.addView(avatarImageView, LayoutHelper.createFrame(64, 64, Gravity.CENTER, 0, 8, 0, 0));
 
         AvatarDrawable avatarDrawable = new AvatarDrawable(botUser);
@@ -2003,7 +2002,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             linearLayout2.addView(avatarContainer, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 100));
 
             BackupImageView avatarImageView = new BackupImageView(context);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(64));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(64));
             avatarContainer.addView(avatarImageView, LayoutHelper.createFrame(64, 64, Gravity.CENTER, 0, 8, 0, 0));
 
             AvatarDrawable avatarDrawable = new AvatarDrawable(botUser);

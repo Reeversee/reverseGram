@@ -25,7 +25,7 @@ import java.io.RandomAccessFile;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class FileUploadOperation {
 
@@ -82,6 +82,7 @@ public class FileUploadOperation {
     private long availableSize;
     private boolean uploadFirstPartLater;
     private SparseArray<UploadCachedResult> cachedResults = new SparseArray<>();
+    private boolean[] recalculatedEstimatedSize = {false, false};
     protected long lastProgressUpdateTime;
 
     public interface FileUploadOperationDelegate {
@@ -200,8 +201,23 @@ public class FileUploadOperation {
         AutoDeleteMediaTask.unlockFile(uploadingFilePath);
     }
 
-    protected void checkNewDataAvailable(final long newAvailableSize, final long finalSize) {
+    protected void checkNewDataAvailable(final long newAvailableSize, final long finalSize, final Float progress) {
         Utilities.stageQueue.postRunnable(() -> {
+            if (progress != null && estimatedSize != 0 && finalSize == 0) {
+                boolean needRecalculation = false;
+                if (progress > 0.75f && !recalculatedEstimatedSize[0]) {
+                    recalculatedEstimatedSize[0] = true;
+                    needRecalculation = true;
+                }
+                if (progress > 0.95f && !recalculatedEstimatedSize[1]) {
+                    recalculatedEstimatedSize[1] = true;
+                    needRecalculation = true;
+                }
+                if (needRecalculation) {
+                    estimatedSize = (long) (newAvailableSize / progress);
+                }
+            }
+
             if (estimatedSize != 0 && finalSize != 0) {
                 estimatedSize = 0;
                 totalFileSize = finalSize;
@@ -291,7 +307,7 @@ public class FileUploadOperation {
                 if (AccountInstance.getInstance(currentAccount).getUserConfig().isPremium() && totalFileSize > FileLoader.DEFAULT_MAX_FILE_SIZE) {
                     maxUploadParts = MessagesController.getInstance(currentAccount).uploadMaxFilePartsPremium;
                 }
-                uploadChunkSize = (int) Math.max(slowNetwork ? minUploadChunkSlowNetworkSize : ExteraConfig.uploadSpeedBoost ? minUploadChunkBoostSize : minUploadChunkSize, (totalFileSize + 1024L * maxUploadParts - 1) / (1024L * maxUploadParts));
+                uploadChunkSize = (int) Math.max(slowNetwork ? minUploadChunkSlowNetworkSize : ReverseConfig.uploadSpeedBoost ? minUploadChunkBoostSize : minUploadChunkSize, (totalFileSize + 1024L * maxUploadParts - 1) / (1024L * maxUploadParts));
                 if (1024 % uploadChunkSize != 0) {
                     int chunkSize = 64;
                     while (uploadChunkSize > chunkSize) {

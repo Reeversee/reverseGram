@@ -23,7 +23,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
 import android.os.SystemClock;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -67,8 +66,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
-
-import com.exteragram.messenger.ExteraConfig;
 
 @SuppressWarnings("JavaReflectionMemberAccess")
 public class RecyclerListView extends RecyclerView {

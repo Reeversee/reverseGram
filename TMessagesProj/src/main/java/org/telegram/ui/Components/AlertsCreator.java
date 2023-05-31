@@ -125,7 +125,7 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class AlertsCreator {
     public final static int PERMISSIONS_REQUEST_TOP_ICON_SIZE = 72;
@@ -1353,7 +1353,7 @@ public class AlertsCreator {
         avatarDrawable.setTextSize(AndroidUtilities.dp(12));
 
         BackupImageView imageView = new BackupImageView(context);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(40));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(40));
         frameLayout.addView(imageView, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, 22, 5, 22, 0));
 
         TextView textView = new TextView(context);
@@ -1643,7 +1643,7 @@ public class AlertsCreator {
         avatarDrawable.setTextSize(AndroidUtilities.dp(18));
 
         BackupImageView imageView = new BackupImageView(context);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(40));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(40));
         frameLayout.addView(imageView, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, 22, 5, 22, 0));
 
         TextView textView = new TextView(context);
@@ -2046,7 +2046,7 @@ public class AlertsCreator {
         avatarDrawable.setInfo(user);
 
         BackupImageView imageView = new BackupImageView(context);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(40));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(40));
         imageView.setForUserOrChat(user, avatarDrawable);
         frameLayout.addView(imageView, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, 22, 5, 22, 0));
 
@@ -4877,7 +4877,7 @@ public class AlertsCreator {
         frameLayout.addView(pin, LayoutHelper.createFrame(60, 82, Gravity.CENTER, 0, 0, 0, 0));
 
         BackupImageView imageView = new BackupImageView(activity);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(52));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(52));
         imageView.setForUserOrChat(selfUser, new AvatarDrawable(selfUser));
         frameLayout.addView(imageView, LayoutHelper.createFrame(52, 52, Gravity.CENTER, 0, 0, 0, 11));
 

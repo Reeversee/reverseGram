@@ -1,7 +1,5 @@
 package org.telegram.ui;
 
-import static android.content.Context.AUDIO_SERVICE;
-
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -33,7 +31,6 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.media.AudioManager;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -76,7 +73,7 @@ import androidx.recyclerview.widget.ListUpdateCallback;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
@@ -98,6 +95,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoipAudioManager;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -160,6 +158,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
 
 public class GroupCallActivity extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
 
@@ -1716,6 +1715,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     private GroupCallActivity(Context context, AccountInstance account, ChatObject.Call groupCall, TLRPC.Chat chat, TLRPC.InputPeer schedulePeer, boolean scheduleHasFewPeers, String scheduledHash) {
         super(context, false);
+        setOpenNoDelay(true);
         this.accountInstance = account;
         this.call = groupCall;
         this.schedulePeer = schedulePeer;
@@ -1735,6 +1735,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
             @Override
             public void onOpenAnimationEnd() {
+                VoIPService voipService = VoIPService.getSharedInstance();
+                if (voipService != null) {
+                    CountDownLatch latch = voipService.getGroupCallBottomSheetLatch();
+                    if (latch != null) {
+                        latch.countDown();
+                    }
+                }
+
                 if (muteButtonState == MUTE_BUTTON_STATE_SET_REMINDER) {
                     showReminderHint();
                 }
@@ -4081,8 +4089,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         cameraButton.setCheckable(true);
         cameraButton.setTextSize(12);
         cameraButton.showText(false, false);
-        cameraButton.setCrossOffset(-AndroidUtilities.dpf2(3.5f + (ExteraConfig.useSolarIcons ? 3.5f : 0)));
-        cameraButton.setCrossOffsetY(-AndroidUtilities.dpf2(ExteraConfig.useSolarIcons ? 3.5f : 0));
+        cameraButton.setCrossOffset(-AndroidUtilities.dpf2(3.5f + (ReverseConfig.useSolarIcons ? 3.5f : 0)));
+        cameraButton.setCrossOffsetY(-AndroidUtilities.dpf2(ReverseConfig.useSolarIcons ? 3.5f : 0));
         cameraButton.setVisibility(View.GONE);
         buttonsContainer.addView(cameraButton, LayoutHelper.createFrame(68, 80));
 
@@ -4403,8 +4411,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     soundItem.setIcon(VoIPService.getSharedInstance().isHeadsetPlugged() ? R.drawable.msg_voice_headphones : R.drawable.msg_voice_phone);
                     soundItem.setSubtext(VoIPService.getSharedInstance().isHeadsetPlugged() ? LocaleController.getString("VoipAudioRoutingHeadset", R.string.VoipAudioRoutingHeadset) : LocaleController.getString("VoipAudioRoutingPhone", R.string.VoipAudioRoutingPhone));
                 } else if (rout == VoIPService.AUDIO_ROUTE_SPEAKER) {
-                    AudioManager am = (AudioManager) context.getSystemService(AUDIO_SERVICE);
-                    if (am.isSpeakerphoneOn()) {
+                    VoipAudioManager vam = VoipAudioManager.get();
+                    if (vam.isSpeakerphoneOn()) {
                         soundItem.setIcon(R.drawable.msg_voice_speaker);
                         soundItem.setSubtext(LocaleController.getString("VoipAudioRoutingSpeaker", R.string.VoipAudioRoutingSpeaker));
                     } else {

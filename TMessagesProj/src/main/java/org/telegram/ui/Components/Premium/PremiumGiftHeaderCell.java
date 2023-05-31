@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -39,7 +39,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
 
         avatarDrawable = new AvatarDrawable();
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(100));
+        avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(100));
         addView(avatarImageView, LayoutHelper.createLinear(100, 100, Gravity.CENTER_HORIZONTAL, 0, 28, 0, 0));
 
         titleView = new TextView(context);

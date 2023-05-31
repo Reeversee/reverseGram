@@ -88,9 +88,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.CanvasUtils;
-import com.exteragram.messenger.utils.SystemUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.CanvasUtils;
+import com.reversegram.messenger.utils.SystemUtils;
 
 public class PasscodeActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public final static int TYPE_MANAGE_CODE_SETTINGS = 0,
@@ -648,7 +648,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     @SuppressLint("NewApi")
                     @Override
                     public void getOutline(View view, Outline outline) {
-                        if (ExteraConfig.squareFab) {
+                        if (ReverseConfig.squareFab) {
                             outline.setRoundRect(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56), AndroidUtilities.dp(16));
                         } else {
                             outline.setOval(0, 0, AndroidUtilities.dp(56), AndroidUtilities.dp(56));

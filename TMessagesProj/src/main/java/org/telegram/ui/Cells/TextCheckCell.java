@@ -30,8 +30,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.components.VerticalImageSpan;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.components.VerticalImageSpan;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -389,7 +389,7 @@ public class TextCheckCell extends FrameLayout {
             float animatedRad = rad * animationProgress;
             canvas.drawCircle(cx, cy, animatedRad, animationPaint);
         }
-        if (needDivider && !ExteraConfig.disableDividers) {
+        if (needDivider && !ReverseConfig.disableDividers) {
             if (imageView != null) {
                 canvas.drawLine(LocaleController.isRTL ? 0 : padding, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? padding : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {

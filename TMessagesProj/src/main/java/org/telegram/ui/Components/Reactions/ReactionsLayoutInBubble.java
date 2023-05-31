@@ -39,7 +39,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class ReactionsLayoutInBubble {
 
@@ -619,7 +619,7 @@ public class ReactionsLayoutInBubble {
                 w = (int) (width * progress + animateFromWidth * (1f - progress));
             }
             AndroidUtilities.rectTmp.set(0, 0, w, height);
-            float rad = ExteraConfig.getAvatarCorners(height, true);
+            float rad = ReverseConfig.getAvatarCorners(height, true);
             if (drawServiceShaderBackground > 0) {
                 Paint paint1 = getThemedPaint(Theme.key_paint_chatActionBackground);
                 Paint paint2 = Theme.chat_actionBackgroundGradientDarkenPaint;

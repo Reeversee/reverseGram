@@ -73,9 +73,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.utils.LocaleUtils;
-import com.exteragram.messenger.utils.MonetUtils;
+import com.reversegram.messenger.ReverseConfig;
+import com.reversegram.messenger.utils.LocaleUtils;
+import com.reversegram.messenger.utils.MonetUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -4922,7 +4922,7 @@ public class Theme {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
         int eventType = -1;
-        if (ExteraConfig.eventType == 0) {
+        if (ReverseConfig.eventType == 0) {
             if (monthOfYear == 11 && dayOfMonth >= 24 && dayOfMonth <= 31 || monthOfYear == 0 && dayOfMonth == 1) {
                 eventType = 0;
             } else if (monthOfYear == 1 && dayOfMonth == 14) {
@@ -4931,7 +4931,7 @@ public class Theme {
                 eventType = 2;
             }
         } else {
-            switch (ExteraConfig.eventType) {
+            switch (ReverseConfig.eventType) {
                 case 2:
                     eventType = 0;
                     break;
@@ -4954,7 +4954,7 @@ public class Theme {
             int monthOfYear = calendar.get(Calendar.MONTH);
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            canStartHolidayAnimation = monthOfYear == 0 && dayOfMonth == 1 && hour <= 23 || ExteraConfig.forceSnow;
+            canStartHolidayAnimation = monthOfYear == 0 && dayOfMonth == 1 && hour <= 23 || ReverseConfig.forceSnow;
             if (dialogs_holidayDrawable == null) {
                 if (canStartHolidayAnimation && (monthOfYear == 11 && dayOfMonth >= (BuildVars.DEBUG_PRIVATE_VERSION ? 29 : 31) && dayOfMonth <= 31 || monthOfYear == 0 && dayOfMonth == 1)) {
                     boolean isUpperCase;
@@ -5220,6 +5220,23 @@ public class Theme {
             }
         } else {
             return createSelectorDrawable(color, 2);
+        }
+    }
+
+    public static Drawable getSelectorDrawableByColor(int colorValue, int backgroundColorValue) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            Drawable maskDrawable = new ColorDrawable(0xffffffff);
+            ColorStateList colorStateList = new ColorStateList(
+                    new int[][]{StateSet.WILD_CARD},
+                    new int[]{colorValue}
+            );
+            return new RippleDrawable(colorStateList, new ColorDrawable(backgroundColorValue), maskDrawable);
+        } else {
+            StateListDrawable stateListDrawable = new StateListDrawable();
+            stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(colorValue));
+            stateListDrawable.addState(new int[]{android.R.attr.state_selected}, new ColorDrawable(colorValue));
+            stateListDrawable.addState(StateSet.WILD_CARD, new ColorDrawable(backgroundColorValue));
+            return stateListDrawable;
         }
     }
 

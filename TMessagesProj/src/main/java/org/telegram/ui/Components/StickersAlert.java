@@ -94,7 +94,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.exteragram.messenger.utils.ChatUtils;
+import com.reversegram.messenger.utils.ChatUtils;
 
 public class StickersAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
 

@@ -1,19 +1,11 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.DynamicDrawableSpan;
-import android.text.style.ImageSpan;
-import android.util.Log;
 import android.util.Pair;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -25,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,7 +50,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class MessageSeenView extends FrameLayout {
 
@@ -360,7 +351,7 @@ public class MessageSeenView extends FrameLayout {
         public UserCell(Context context) {
             super(context);
             avatarImageView = new BackupImageView(context);
-            avatarImageView.setRoundRadius(ExteraConfig.getAvatarCorners(34));
+            avatarImageView.setRoundRadius(ReverseConfig.getAvatarCorners(34));
 
             nameView = new SimpleTextView(context);
             nameView.setTextSize(16);

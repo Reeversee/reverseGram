@@ -29,7 +29,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class DialogMeUrlCell extends BaseCell {
 
@@ -63,7 +63,7 @@ public class DialogMeUrlCell extends BaseCell {
         super(context);
 
         Theme.createDialogsResources(context);
-        avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(52));
+        avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(52));
     }
 
     public void setRecentMeUrl(TLRPC.RecentMeUrl url) {
@@ -329,7 +329,7 @@ public class DialogMeUrlCell extends BaseCell {
             Theme.dialogs_verifiedCheckDrawable.draw(canvas);
         }
 
-        if (useSeparator && !ExteraConfig.disableDividers) {
+        if (useSeparator && !ReverseConfig.disableDividers) {
             if (LocaleController.isRTL) {
                 canvas.drawLine(0, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {

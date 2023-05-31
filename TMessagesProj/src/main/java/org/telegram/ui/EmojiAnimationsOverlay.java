@@ -6,8 +6,6 @@ import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.exteragram.messenger.ExteraConfig;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

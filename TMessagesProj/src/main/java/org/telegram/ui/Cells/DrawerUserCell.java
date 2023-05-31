@@ -16,7 +16,7 @@ import android.view.Gravity;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
@@ -57,7 +57,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         avatarDrawable.setTextSize(AndroidUtilities.dp(20));
 
         imageView = new BackupImageView(context);
-        imageView.setRoundRadius(ExteraConfig.getAvatarCorners(36));
+        imageView.setRoundRadius(ReverseConfig.getAvatarCorners(36));
         addView(imageView, LayoutHelper.createFrame(36, 36, Gravity.LEFT | Gravity.TOP, 14, 6, 0, 0));
 
         textView = new SimpleTextView(context);
@@ -148,7 +148,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
             textView.setDrawablePadding(AndroidUtilities.dp(4));
             status.set(emojiStatusId, true);
             textView.setRightDrawableOutside(true);
-        } else if (ExteraConfig.isExteraDev(user)) {
+        } else if (ReverseConfig.isExteraDev(user)) {
             textView.setDrawablePadding(AndroidUtilities.dp(2));
             if (exteraArrow == null) {
                 exteraArrow = Theme.dialogs_exteraArrowDrawable;

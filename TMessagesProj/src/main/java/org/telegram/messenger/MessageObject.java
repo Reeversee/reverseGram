@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.text.LineBreaker;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Layout;
@@ -27,12 +28,8 @@ import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.Base64;
-import android.util.Log;
 
 import androidx.collection.LongSparseArray;
-
-import com.exteragram.messenger.boost.encryption.BaseEncryptor;
-import com.exteragram.messenger.boost.filter.ZalgoFilter;
 
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.browser.Browser;
@@ -282,7 +279,6 @@ public class MessageObject {
     public Drawable customAvatarDrawable;
 
     public boolean isDecrypted;
-    public BaseEncryptor currentEncryptor;
     public String originalText;
 
     public void updateMessage(boolean reset) {
@@ -4675,7 +4671,7 @@ public class MessageObject {
         StaticLayout captionLayout;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             captionLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, width)
-                    .setBreakStrategy(StaticLayout.BREAK_STRATEGY_HIGH_QUALITY)
+                    .setBreakStrategy(LineBreaker.BREAK_STRATEGY_HIGH_QUALITY)
                     .setHyphenationFrequency(StaticLayout.HYPHENATION_FREQUENCY_NONE)
                     .setAlignment(Layout.Alignment.ALIGN_NORMAL)
                     .build();
@@ -5464,7 +5460,7 @@ public class MessageObject {
                 StaticLayout.Builder builder =
                         StaticLayout.Builder.obtain(messageText, 0, messageText.length(), paint, maxWidth)
                                 .setLineSpacing(lineAdd, lineSpacing)
-                                .setBreakStrategy(StaticLayout.BREAK_STRATEGY_HIGH_QUALITY)
+                                .setBreakStrategy(LineBreaker.BREAK_STRATEGY_HIGH_QUALITY)
                                 .setHyphenationFrequency(StaticLayout.HYPHENATION_FREQUENCY_NONE)
                                 .setAlignment(align);
                 if (emojiOnlyCount > 0) {
@@ -5542,7 +5538,7 @@ public class MessageObject {
                         StaticLayout.Builder builder =
                                 StaticLayout.Builder.obtain(sb, 0, sb.length(), paint, maxWidth + AndroidUtilities.dp(2))
                                         .setLineSpacing(lineAdd, lineSpacing)
-                                        .setBreakStrategy(StaticLayout.BREAK_STRATEGY_HIGH_QUALITY)
+                                        .setBreakStrategy(LineBreaker.BREAK_STRATEGY_HIGH_QUALITY)
                                         .setHyphenationFrequency(StaticLayout.HYPHENATION_FREQUENCY_NONE)
                                         .setAlignment(align);
                         if (emojiOnlyCount > 0) {

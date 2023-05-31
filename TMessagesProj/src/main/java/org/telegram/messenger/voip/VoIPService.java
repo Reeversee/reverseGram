@@ -79,14 +79,11 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.LruCache;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-
-import com.exteragram.messenger.ExteraConfig;
 
 import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
@@ -145,6 +142,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 @SuppressLint("NewApi")
 public class VoIPService extends Service implements SensorEventListener, AudioManager.OnAudioFocusChangeListener, VoIPController.ConnectionStateListener, NotificationCenter.NotificationCenterDelegate {
@@ -316,6 +315,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 	private boolean startedRinging;
 
 	private int classGuid;
+	private volatile CountDownLatch groupCallBottomSheetLatch;
 
 	private HashMap<String, Integer> currentStreamRequestTimestamp = new HashMap<>();
 	public boolean micSwitching;
@@ -325,6 +325,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		public void run() {
 
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+			VoipAudioManager vam = VoipAudioManager.get();
 			am.abandonAudioFocus(VoIPService.this);
 			am.unregisterMediaButtonEventReceiver(new ComponentName(VoIPService.this, VoIPMediaButtonReceiver.class));
 			if (audioDeviceCallback != null) {
@@ -337,7 +338,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 					bluetoothScoActive = false;
 					bluetoothScoConnecting = false;
 				}
-				am.setSpeakerphoneOn(false);
+				vam.setSpeakerphoneOn(false);
 			}
 
 			Utilities.globalQueue.postRunnable(() -> soundPool.release());
@@ -399,7 +400,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 				}
 				if (isHeadsetPlugged) {
 					AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-					if (am.isSpeakerphoneOn()) {
+					VoipAudioManager vam = VoipAudioManager.get();
+					if (vam.isSpeakerphoneOn()) {
 						previousAudioOutput = 0;
 					} else if (am.isBluetoothScoOn()) {
 						previousAudioOutput = 2;
@@ -440,7 +442,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 					if (needSwitchToBluetoothAfterScoActivates) {
 						needSwitchToBluetoothAfterScoActivates = false;
 						AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-						am.setSpeakerphoneOn(false);
+						VoipAudioManager vam = VoipAudioManager.get();
+						vam.setSpeakerphoneOn(false);
 						am.setBluetoothScoOn(true);
 					}
 				}
@@ -463,6 +466,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 			}
 		}
 	};
+
+	public CountDownLatch getGroupCallBottomSheetLatch() {
+		return groupCallBottomSheetLatch;
+	}
 
 	public boolean isFrontFaceCamera() {
 		return isFrontFaceCamera;
@@ -1712,8 +1719,14 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 				req.schedule_date = scheduleDate;
 				req.flags |= 2;
 			}
+			groupCallBottomSheetLatch = new CountDownLatch(1);
 			ConnectionsManager.getInstance(currentAccount).sendRequest(req, (response, error) -> {
 				if (response != null) {
+					try {
+						groupCallBottomSheetLatch.await(800, TimeUnit.MILLISECONDS);
+					} catch (InterruptedException e) {
+						FileLog.e(e);
+					}
 					TLRPC.Updates updates = (TLRPC.Updates) response;
 					for (int a = 0; a < updates.updates.size(); a++) {
 						TLRPC.Update update = updates.updates.get(a);
@@ -2729,8 +2742,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 			}
 		} else if (audioConfigured && !USE_CONNECTION_SERVICE) {
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+			VoipAudioManager vam = VoipAudioManager.get();
 			if (hasEarpiece()) {
-				am.setSpeakerphoneOn(!am.isSpeakerphoneOn());
+				vam.setSpeakerphoneOn(!vam.isSpeakerphoneOn());
 			} else {
 				am.setBluetoothScoOn(!am.isBluetoothScoOn());
 			}
@@ -2748,6 +2762,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 			FileLog.d("setAudioOutput " + which);
 		}
 		AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+		VoipAudioManager vam = VoipAudioManager.get();
 		if (USE_CONNECTION_SERVICE && systemCallConnection != null) {
 			switch (which) {
 				case 2:
@@ -2772,7 +2787,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 						}
 					} else {
 						am.setBluetoothScoOn(true);
-						am.setSpeakerphoneOn(false);
+						vam.setSpeakerphoneOn(false);
 					}
 					audioRouteToSet = AUDIO_ROUTE_BLUETOOTH;
 					break;
@@ -2783,7 +2798,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 						bluetoothScoActive = false;
 						bluetoothScoConnecting = false;
 					}
-					am.setSpeakerphoneOn(false);
+					vam.setSpeakerphoneOn(false);
 					am.setBluetoothScoOn(false);
 					audioRouteToSet = AUDIO_ROUTE_EARPIECE;
 					break;
@@ -2795,7 +2810,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 						bluetoothScoConnecting = false;
 					}
 					am.setBluetoothScoOn(false);
-					am.setSpeakerphoneOn(true);
+					vam.setSpeakerphoneOn(true);
 					audioRouteToSet = AUDIO_ROUTE_SPEAKER;
 					break;
 			}
@@ -2827,7 +2842,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 			return hasEarpiece() ? route == CallAudioState.ROUTE_SPEAKER : route == CallAudioState.ROUTE_BLUETOOTH;
 		} else if (audioConfigured && !USE_CONNECTION_SERVICE) {
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-			return hasEarpiece() ? am.isSpeakerphoneOn() : am.isBluetoothScoOn();
+			VoipAudioManager vam = VoipAudioManager.get();
+			return hasEarpiece() ? vam.isSpeakerphoneOn() : am.isBluetoothScoOn();
 		}
 		return speakerphoneStateToSet;
 	}
@@ -2849,9 +2865,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		}
 		if (audioConfigured) {
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+			VoipAudioManager vam = VoipAudioManager.get();
 			if (am.isBluetoothScoOn()) {
 				return AUDIO_ROUTE_BLUETOOTH;
-			} else if (am.isSpeakerphoneOn()) {
+			} else if (vam.isSpeakerphoneOn()) {
 				return AUDIO_ROUTE_SPEAKER;
 			} else {
 				return AUDIO_ROUTE_EARPIECE;
@@ -3104,11 +3121,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		cpuWakelock.release();
 		if (!playingSound) {
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+			VoipAudioManager vam = VoipAudioManager.get();
 			if (!USE_CONNECTION_SERVICE) {
 				if (isBtHeadsetConnected || bluetoothScoActive || bluetoothScoConnecting) {
 					am.stopBluetoothSco();
 					am.setBluetoothScoOn(false);
-					am.setSpeakerphoneOn(false);
+					vam.setSpeakerphoneOn(false);
 					bluetoothScoActive = false;
 					bluetoothScoConnecting = false;
 				}
@@ -3698,6 +3716,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 				}
 				AndroidUtilities.runOnUIThread(() -> {
 					am.requestAudioFocus(VoIPService.this, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN);
+					final VoipAudioManager vam = VoipAudioManager.get();
 					if (isBluetoothHeadsetConnected() && hasEarpiece()) {
 						switch (audioRouteToSet) {
 							case AUDIO_ROUTE_BLUETOOTH:
@@ -3710,22 +3729,22 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 									}
 								} else {
 									am.setBluetoothScoOn(true);
-									am.setSpeakerphoneOn(false);
+									vam.setSpeakerphoneOn(false);
 								}
 								break;
 							case AUDIO_ROUTE_EARPIECE:
 								am.setBluetoothScoOn(false);
-								am.setSpeakerphoneOn(false);
+								vam.setSpeakerphoneOn(false);
 								break;
 							case AUDIO_ROUTE_SPEAKER:
 								am.setBluetoothScoOn(false);
-								am.setSpeakerphoneOn(true);
+								vam.setSpeakerphoneOn(true);
 								break;
 						}
 					} else if (isBluetoothHeadsetConnected()) {
 						am.setBluetoothScoOn(speakerphoneStateToSet);
 					} else {
-						am.setSpeakerphoneOn(speakerphoneStateToSet);
+						vam.setSpeakerphoneOn(speakerphoneStateToSet);
 						if (speakerphoneStateToSet) {
 							audioRouteToSet = AUDIO_ROUTE_SPEAKER;
 						} else {
@@ -3741,7 +3760,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
 		Sensor proximity = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 		try {
-			if (!ExteraConfig.disableProximitySensor && proximity != null) {
+			if (proximity != null) {
 				proximityWakelock = ((PowerManager) getSystemService(Context.POWER_SERVICE)).newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "telegram-voip-prx");
 				sm.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
 			}
@@ -3776,7 +3795,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		}
 		if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
 			AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-			if (audioRouteToSet != AUDIO_ROUTE_EARPIECE || isHeadsetPlugged || am.isSpeakerphoneOn() || (isBluetoothHeadsetConnected() && am.isBluetoothScoOn())) {
+			VoipAudioManager vam = VoipAudioManager.get();
+			if (audioRouteToSet != AUDIO_ROUTE_EARPIECE || isHeadsetPlugged || vam.isSpeakerphoneOn() || (isBluetoothHeadsetConnected() && am.isBluetoothScoOn())) {
 				return;
 			}
 			boolean newIsNear = event.values[0] < Math.min(event.sensor.getMaximumRange(), 3);
@@ -4402,8 +4422,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 		if (tgVoip[CAPTURE_DEVICE_CAMERA] != null) {
 			if (!USE_CONNECTION_SERVICE) {
 				final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-				tgVoip[CAPTURE_DEVICE_CAMERA].setAudioOutputGainControlEnabled(hasEarpiece() && !am.isSpeakerphoneOn() && !am.isBluetoothScoOn() && !isHeadsetPlugged);
-				tgVoip[CAPTURE_DEVICE_CAMERA].setEchoCancellationStrength(isHeadsetPlugged || (hasEarpiece() && !am.isSpeakerphoneOn() && !am.isBluetoothScoOn() && !isHeadsetPlugged) ? 0 : 1);
+				boolean isSpeakerPhoneOn = VoipAudioManager.get().isSpeakerphoneOn();
+				tgVoip[CAPTURE_DEVICE_CAMERA].setAudioOutputGainControlEnabled(hasEarpiece() && !isSpeakerPhoneOn && !am.isBluetoothScoOn() && !isHeadsetPlugged);
+				tgVoip[CAPTURE_DEVICE_CAMERA].setEchoCancellationStrength(isHeadsetPlugged || (hasEarpiece() && !isSpeakerPhoneOn && !am.isBluetoothScoOn() && !isHeadsetPlugged) ? 0 : 1);
 			} else {
 				final boolean isEarpiece = systemCallConnection.getCallAudioState().getRoute() == CallAudioState.ROUTE_EARPIECE;
 				tgVoip[CAPTURE_DEVICE_CAMERA].setAudioOutputGainControlEnabled(isEarpiece);

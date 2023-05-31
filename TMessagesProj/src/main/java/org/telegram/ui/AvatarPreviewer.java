@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -26,7 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
 import androidx.core.util.Preconditions;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
@@ -70,6 +71,7 @@ public class AvatarPreviewer {
     private Layout layout;
     private boolean visible;
 
+    @SuppressLint("RestrictedApi")
     public void show(ViewGroup parentContainer, Data data, Callback callback) {
         Preconditions.checkNotNull(parentContainer);
         Preconditions.checkNotNull(data);
@@ -371,7 +373,7 @@ public class AvatarPreviewer {
             setFitsSystemWindows(true);
             imageReceiver.setAspectFit(true);
             imageReceiver.setInvalidateAll(true);
-            imageReceiver.setRoundRadius(ExteraConfig.getAvatarCorners(42));
+            imageReceiver.setRoundRadius(ReverseConfig.getAvatarCorners(42));
             imageReceiver.setParentView(this);
             radialProgress = new RadialProgress2(this);
             radialProgress.setOverrideAlpha(0.0f);

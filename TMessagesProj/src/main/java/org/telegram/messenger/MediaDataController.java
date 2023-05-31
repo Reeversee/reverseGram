@@ -34,7 +34,6 @@ import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.util.Pair;
 import android.util.SparseArray;
 
@@ -90,7 +89,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 @SuppressWarnings("unchecked")
 public class MediaDataController extends BaseController {
@@ -808,7 +807,7 @@ public class MediaDataController extends BaseController {
         if (type == TYPE_PREMIUM_STICKERS) {
             return new ArrayList<>(recentStickers[type]);
         }
-        int unlimitedRecentStickers = ExteraConfig.unlimitedRecentStickers ? Integer.MAX_VALUE : 20;
+        int unlimitedRecentStickers = ReverseConfig.unlimitedRecentStickers ? Integer.MAX_VALUE : 20;
         return new ArrayList<>(arrayList.subList(0, Math.min(arrayList.size(), unlimitedRecentStickers)));
     }
 

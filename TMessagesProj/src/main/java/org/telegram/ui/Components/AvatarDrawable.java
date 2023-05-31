@@ -16,7 +16,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -33,9 +32,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import com.exteragram.messenger.ExteraConfig;
+import com.reversegram.messenger.ReverseConfig;
 
 public class AvatarDrawable extends Drawable {
 
@@ -356,12 +354,12 @@ public class AvatarDrawable extends Drawable {
         canvas.save();
         canvas.translate(bounds.left, bounds.top);
         AndroidUtilities.rectTmp.set(0, 0, size, size);
-        canvas.drawRoundRect(AndroidUtilities.rectTmp, ExteraConfig.getAvatarCorners(size, true), ExteraConfig.getAvatarCorners(size, true), Theme.avatar_backgroundPaint);
+        canvas.drawRoundRect(AndroidUtilities.rectTmp, ReverseConfig.getAvatarCorners(size, true), ReverseConfig.getAvatarCorners(size, true), Theme.avatar_backgroundPaint);
 
         if (avatarType == AVATAR_TYPE_ARCHIVED) {
             if (archivedAvatarProgress != 0) {
                 Theme.avatar_backgroundPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_avatar_backgroundArchived), alpha));
-                canvas.drawRoundRect(0, 0, size * archivedAvatarProgress, size * archivedAvatarProgress, ExteraConfig.getAvatarCorners(size * archivedAvatarProgress, true), ExteraConfig.getAvatarCorners(size * archivedAvatarProgress, true), Theme.avatar_backgroundPaint);
+                canvas.drawRoundRect(0, 0, size * archivedAvatarProgress, size * archivedAvatarProgress, ReverseConfig.getAvatarCorners(size * archivedAvatarProgress, true), ReverseConfig.getAvatarCorners(size * archivedAvatarProgress, true), Theme.avatar_backgroundPaint);
 
                 if (Theme.dialogs_archiveAvatarDrawableRecolored) {
                     Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();

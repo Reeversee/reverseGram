@@ -113,8 +113,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
 
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.boost.filter.ZalgoFilter;
+import com.reversegram.messenger.ReverseConfig;
 
 public class DialogCell extends BaseCell {
 
@@ -513,7 +512,7 @@ public class DialogCell extends BaseCell {
         this.resourcesProvider = resourcesProvider;
         parentFragment = fragment;
         Theme.createDialogsResources(context);
-        avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(56));
+        avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(56));
         for (int i = 0; i < thumbImage.length; ++i) {
             thumbImage[i] = new ImageReceiver(this);
             thumbImage[i].ignoreNotifications = true;
@@ -1101,7 +1100,7 @@ public class DialogCell extends BaseCell {
                             drawScam = 2;
                             Theme.dialogs_fakeDrawable.checkText();
                         }
-                        drawArrow = ExteraConfig.isExtera(chat);
+                        drawArrow = ReverseConfig.isExtera(chat) && !isTopic;
                         drawVerified = !forbidVerified && chat.verified;
                     } else if (user != null) {
                         if (user.scam) {
@@ -1111,7 +1110,7 @@ public class DialogCell extends BaseCell {
                             drawScam = 2;
                             Theme.dialogs_fakeDrawable.checkText();
                         }
-                        drawArrow = user.id != 0 && user.id != UserConfig.getInstance(currentAccount).getClientUserId() && ExteraConfig.isExteraDev(user);
+                        drawArrow = user.id != 0 && user.id != UserConfig.getInstance(currentAccount).getClientUserId() && ReverseConfig.isExteraDev(user);
                         drawVerified = !forbidVerified && user.verified;
                         drawPremium = MessagesController.getInstance(currentAccount).isPremiumUser(user) && UserConfig.getInstance(currentAccount).clientUserId != user.id && user.id != 0;
                         if (drawPremium) {
@@ -2593,7 +2592,7 @@ public class DialogCell extends BaseCell {
             for (int i = 0; i < thumbImage.length; ++i) {
                 thumbImage[i].setImageBitmap((BitmapDrawable) null);
             }
-            avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(56));
+            avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(56));
             drawUnmute = false;
         } else {
             int oldUnreadCount = unreadCount;
@@ -2938,7 +2937,7 @@ public class DialogCell extends BaseCell {
                 reactionsMentionsAnimator.start();
             }
 
-            avatarImage.setRoundRadius(ExteraConfig.getAvatarCorners(chat != null && chat.forum && currentDialogFolderId == 0 && !useFromUserAsAvatar ? 56 * 0.65f : 56));
+            avatarImage.setRoundRadius(ReverseConfig.getAvatarCorners(chat != null && chat.forum && currentDialogFolderId == 0 && !useFromUserAsAvatar ? 56 * 0.65f : 56));
         }
         if (!isTopic && (getMeasuredWidth() != 0 || getMeasuredHeight() != 0)) {
             rebuildLayout = true;
@@ -4001,7 +4000,7 @@ public class DialogCell extends BaseCell {
             canvas.restore();
         }
 
-        if (useSeparator && !ExteraConfig.disableDividers) {
+        if (useSeparator && !ReverseConfig.disableDividers) {
             int left;
             if (fullSeparator || currentDialogFolderId != 0 && archiveHidden && !fullSeparator2 || fullSeparator2 && !archiveHidden) {
                 left = 0;
