@@ -103,7 +103,7 @@ public class UpdaterUtils {
             ReverseConfig.editor.putLong("lastUpdateCheckTime", ReverseConfig.lastUpdateCheckTime = System.currentTimeMillis()).apply();
             try {
                 if (BuildVars.isBetaApp())
-                    uri = uri.replace("/exteraGram/", "/exteraGram-Beta/");
+                    uri = uri.replace("/reverseGram/", "/reverseGram-beta/");
                 var connection = (HttpURLConnection) new URI(uri).toURL().openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("User-Agent", TranslatorUtils.formatUserAgent());
