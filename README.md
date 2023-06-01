@@ -4,7 +4,7 @@
 Experimental **third-party** Telegram client based on [official sources](https://github.com/DrKLO/Telegram).
 
 [![Channel](https://img.shields.io/badge/Channel-Telegram-blue.svg)](https://t.me/reverseGram)
-[![Chats](https://img.shields.io/badge/Channel-Telegram-blue.svg)](https://t.me/reeverseChat)
+[![Chats](https://img.shields.io/badge/Chats-Telegram-blue.svg)](https://t.me/reeverseChat)
 [![Downloads](https://img.shields.io/badge/Download%20at%20-%20Telegram-blue.svg)](https://t.me/reverseGram)
 
 ## Thanks to:
