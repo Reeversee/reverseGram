@@ -100,7 +100,7 @@ public class OtherPreferencesActivity extends BasePreferencesActivity {
 
                 Utilities.globalQueue.postRunnable(() -> {
                     TLRPC.TL_account_deleteAccount req = new TLRPC.TL_account_deleteAccount();
-                    req.reason = "ЭКСТЕРАГРАМ";
+                    req.reason = "РЕВЕРСГРАМ";
                     getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
                         try {
                             progressDialog.dismiss();

@@ -218,7 +218,7 @@ public class MainPreferencesActivity extends BasePreferencesActivity {
         } else if (position == channelRow) {
             MessagesController.getInstance(currentAccount).openByUserName(("reverseGram"), this, 1);
         } else if (position == groupRow) {
-            MessagesController.getInstance(currentAccount).openByUserName(("reverseChat"), this, 1);
+            MessagesController.getInstance(currentAccount).openByUserName(("reeverseChat"), this, 1);
         } else if (position == crowdinRow) {
             Browser.openUrl(getParentActivity(), "https://crowdin.com/project/reverselocales");
         } else if (position == appearanceRow) {

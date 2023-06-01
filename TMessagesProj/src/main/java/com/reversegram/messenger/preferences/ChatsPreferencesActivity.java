@@ -694,7 +694,7 @@ public class ChatsPreferencesActivity extends BasePreferencesActivity implements
                     } else if (position == messagesDividerRow) {
                         cell.getTextView().setMovementMethod(null);
                         String value = LocaleController.getString("EventLogGroupJoined", R.string.EventLogGroupJoined);
-                        value = value.replace("un1", "**immat0x1**");
+                        value = value.replace("un1", "**チェリーとベーグル**");
                         if (ReverseConfig.showActionTimestamps)
                             value += " " + LocaleController.formatString("TodayAtFormatted", R.string.TodayAtFormatted, "12:34");
                         cell.setText(AndroidUtilities.replaceTags(value));

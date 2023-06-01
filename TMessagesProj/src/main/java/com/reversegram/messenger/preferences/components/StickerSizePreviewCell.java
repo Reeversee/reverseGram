@@ -90,7 +90,7 @@ public class StickerSizePreviewCell extends LinearLayout {
         message.out = false;
         message.peer_id = new TLRPC.TL_peerUser();
         message.peer_id.user_id = 1;
-        messageObjects[0].customReplyName = "immat0x1";
+        messageObjects[0].customReplyName = "チェリーとベーグル";
         messageObjects[0].replyMessageObject = new MessageObject(UserConfig.selectedAccount, message, true, false);
 
         message = new TLRPC.TL_message();
@@ -105,7 +105,7 @@ public class StickerSizePreviewCell extends LinearLayout {
         message.peer_id.user_id = 1;
         messageObjects[1] = new MessageObject(UserConfig.selectedAccount, message, true, false);
         //TLRPC.User currentUser = MessagesController.getInstance(UserConfig.selectedAccount).getUser(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId());
-        messageObjects[1].customReplyName = "8055";//ContactsController.formatName(currentUser.first_name, currentUser.last_name);
+        messageObjects[1].customReplyName = "kira_is_god";//ContactsController.formatName(currentUser.first_name, currentUser.last_name);
         messageObjects[1].replyMessageObject = messageObjects[0];
 
         for (int a = 0; a < cells.length; a++) {
