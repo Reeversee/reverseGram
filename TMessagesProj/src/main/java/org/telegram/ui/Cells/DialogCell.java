@@ -23,6 +23,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -1100,7 +1101,7 @@ public class DialogCell extends BaseCell {
                             drawScam = 2;
                             Theme.dialogs_fakeDrawable.checkText();
                         }
-                        drawArrow = ReverseConfig.isExtera(chat) && !isTopic;
+                        drawArrow = ReverseConfig.isReverse(chat) && !isTopic;
                         drawVerified = !forbidVerified && chat.verified;
                     } else if (user != null) {
                         if (user.scam) {
@@ -1110,7 +1111,7 @@ public class DialogCell extends BaseCell {
                             drawScam = 2;
                             Theme.dialogs_fakeDrawable.checkText();
                         }
-                        drawArrow = user.id != 0 && user.id != UserConfig.getInstance(currentAccount).getClientUserId() && ReverseConfig.isExteraDev(user);
+                        drawArrow = user.id != 0 && user.id != UserConfig.getInstance(currentAccount).getClientUserId() && ReverseConfig.isReverseDev(user);
                         drawVerified = !forbidVerified && user.verified;
                         drawPremium = MessagesController.getInstance(currentAccount).isPremiumUser(user) && UserConfig.getInstance(currentAccount).clientUserId != user.id && user.id != 0;
                         if (drawPremium) {
@@ -2100,7 +2101,7 @@ public class DialogCell extends BaseCell {
             if (messageStringFinal instanceof Spannable) {
                 Spannable messageStringSpannable = (Spannable) messageStringFinal;
                 for (CharacterStyle span : messageStringSpannable.getSpans(0, messageStringSpannable.length(), CharacterStyle.class)) {
-                    if (span instanceof ClickableSpan || (span instanceof StyleSpan && ((StyleSpan) span).getStyle() == android.graphics.Typeface.BOLD)) {
+                    if (span instanceof ClickableSpan || (span instanceof StyleSpan && ((StyleSpan) span).getStyle() == Typeface.BOLD)) {
                         messageStringSpannable.removeSpan(span);
                     }
                 }

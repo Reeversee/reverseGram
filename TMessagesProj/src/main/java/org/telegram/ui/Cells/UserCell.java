@@ -494,7 +494,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 emojiStatus.setColor(Theme.getColor(Theme.key_chats_verifiedBackground, resourcesProvider));
                 nameTextView.setRightDrawable(emojiStatus);
             } else {
-                if (ReverseConfig.isExteraDev(currentUser)) {
+                if (ReverseConfig.isReverseDev(currentUser)) {
                     Drawable arrow = Theme.dialogs_exteraArrowDrawable.getConstantState().newDrawable().mutate();
                     arrow.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedBackground, resourcesProvider), PorterDuff.Mode.MULTIPLY));
                     nameTextView.setRightDrawable(arrow);
@@ -517,7 +517,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
             nameTextView.setRightDrawableTopPadding(-AndroidUtilities.dp(0.5f));
-        } else if (currentUser != null && ReverseConfig.isExteraDev(currentUser)) {
+        } else if (currentUser != null && ReverseConfig.isReverseDev(currentUser)) {
             Drawable arrow = Theme.dialogs_exteraArrowDrawable.getConstantState().newDrawable().mutate();
             arrow.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedBackground, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             nameTextView.setRightDrawable(arrow);

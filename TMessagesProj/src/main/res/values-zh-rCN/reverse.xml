@@ -10,13 +10,13 @@
 
 -->
 <resources>
-    <string name="Preferences">exteraGram 设置</string>
+    <string name="Preferences">reverseGram 设置</string>
     <!-- Main Menu -->
     <string name="Links">链接</string>
-    <string name="AboutExteraDescription">基于官方Telegram源码制作的第三方客户端</string>
+    <string name="AboutReverseDescription">基于官方Telegram源码制作的第三方客户端</string>
     <string name="Channel">通知频道</string>
     <string name="Crowdin">翻译</string>
-    <string name="SourceCode">exteraGram 源码</string>
+    <string name="SourceCode">reverseGram 源码</string>
     <string name="Categories">设置分类</string>
     <!-- Appearance -->
     <string name="AvatarCorners">头像圆角</string>
@@ -169,7 +169,7 @@
     <string name="Datacenter">数据中心</string>
     <!-- Other -->
     <string name="RestartRequired">重启应用以保证设置生效.</string>
-    <string name="ResetSettingsBulletin">**exteraGram** 设置已被重置。</string>
+    <string name="ResetSettingsBulletin">**reverseGram** 设置已被重置。</string>
     <string name="UserNotFound">未找到 **ID** 的用户。</string>
     <string name="PhotoCopied">图片已复制到剪贴板</string>
     <string name="MutualContact">双向联系人</string>

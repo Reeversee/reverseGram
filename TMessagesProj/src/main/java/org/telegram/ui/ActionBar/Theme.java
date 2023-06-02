@@ -155,6 +155,7 @@ public class Theme {
     public static final int MSG_OUT_COLOR_WHITE = 0xffffffff;
     public static final int default_shadow_color = ColorUtils.setAlphaComponent(Color.BLACK, 27);
     public static boolean disallowChangeServiceMessageColor;
+    public static CombinedDrawable profile_reverseArrowDrawable;
 
     public static void applyDefaultShadow(Paint paint) {
         paint.setShadowLayer(dpf2(1), 0, dpf2(0.33f), default_shadow_color);

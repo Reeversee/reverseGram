@@ -148,7 +148,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
             textView.setDrawablePadding(AndroidUtilities.dp(4));
             status.set(emojiStatusId, true);
             textView.setRightDrawableOutside(true);
-        } else if (ReverseConfig.isExteraDev(user)) {
+        } else if (ReverseConfig.isReverseDev(user)) {
             textView.setDrawablePadding(AndroidUtilities.dp(2));
             if (exteraArrow == null) {
                 exteraArrow = Theme.dialogs_exteraArrowDrawable;

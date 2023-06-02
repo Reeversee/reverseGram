@@ -654,7 +654,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             animatedStatus.animate().alpha(1).setDuration(200).start();
             nameTextView.setDrawablePadding(AndroidUtilities.dp(4));
             status.set(emojiStatusId, true);
-        } else if (ReverseConfig.isExteraDev(user)) {
+        } else if (ReverseConfig.isReverseDev(user)) {
             animatedStatus.animate().alpha(1).setDuration(200).start();
             nameTextView.setDrawablePadding(AndroidUtilities.dp(2));
             if (exteraArrow == null) {

@@ -9,10 +9,10 @@
 
      -->
 <resources>
-    <string name="Preferences">Preferencje exteraGram</string>
+    <string name="Preferences">Preferencje reverseGram</string>
     <!--  Main Menu  -->
     <string name="Links">Linki</string>
-    <string name="AboutExteraDescription">Eksperymentalny klient Telegram oparty na oficjalnym kodzie źródłowym!</string>
+    <string name="AboutReverseDescription">Eksperymentalny klient Telegram oparty na oficjalnym kodzie źródłowym!</string>
     <string name="Channel">Kanał</string>
     <string name="Crowdin">Tłumacz</string>
     <string name="SourceCode">Kod źródłowy</string>
@@ -109,7 +109,7 @@ CameraX wspierana jest tylko na
     <string name="RememberLastUsedCamera">Pamiętaj ostatnio używany aparat</string>
     <string name="RememberLastUsedCameraInfo">Podczas nagrywania wiadomości wideo, wybrany zostanie ostatnia używany aparat.</string>
     <string name="PauseOnMinimize">Auto-pauza</string>
-    <string name="PauseOnMinimizeInfo">Wstrzymuje odtwarzanie wideo, gdy urządzenie jest zablokowane lub exteraGram jest zminimalizowany.</string>
+    <string name="PauseOnMinimizeInfo">Wstrzymuje odtwarzanie wideo, gdy urządzenie jest zablokowane lub reverseGram jest zminimalizowany.</string>
     <string name="DisablePlayback">Wyłącz odtwarzanie</string>
     <string name="DisablePlaybackInfo">Wyłącz odtwarzanie po naciśnięciu przycisku głośności.</string>
     <!--  Updates  -->

@@ -9,10 +9,10 @@
 
      -->
 <resources>
-    <string name="Preferences">exteraGram Einstellungen</string>
+    <string name="Preferences">reverseGram Einstellungen</string>
     <!--  Main Menu  -->
     <string name="Links">Links</string>
-    <string name="AboutExteraDescription">Experimenteller Telegram-Client basierend auf offiziellen Telegram-Quellen!</string>
+    <string name="AboutReverseDescription">Experimenteller Telegram-Client basierend auf offiziellen Telegram-Quellen!</string>
     <string name="Channel">Kanal</string>
     <string name="Crowdin">Übersetzen</string>
     <string name="SourceCode">Quellcode</string>
@@ -109,7 +109,7 @@ CameraX wird nur auf
     <string name="RememberLastUsedCamera">Zuletzt verwendete Kamera merken</string>
     <string name="RememberLastUsedCameraInfo">Beim Aufnehmen von Videonachrichten wird die zuletzt verwendete Kamera ausgewählt.</string>
     <string name="PauseOnMinimize">Auto-Pause</string>
-    <string name="PauseOnMinimizeInfo">Pausiert eine Videowiedergabe, wenn das Gerät gesperrt ist oder exteraGram minimiert wird.</string>
+    <string name="PauseOnMinimizeInfo">Pausiert eine Videowiedergabe, wenn das Gerät gesperrt ist oder reverseGram minimiert wird.</string>
     <string name="DisablePlayback">Wiedergabe deaktivieren</string>
     <string name="DisablePlaybackInfo">Deaktiviert die Wiedergabe beim Drücken von Lautstärketasten.</string>
     <!--  Updates  -->

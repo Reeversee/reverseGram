@@ -9,10 +9,10 @@
 
      -->
 <resources>
-    <string name="Preferences">Налады exteraGram</string>
+    <string name="Preferences">Налады reverseGram</string>
     <!--  Main Menu  -->
     <string name="Links">Спасылкі</string>
-    <string name="AboutExteraDescription">Эксперыментальны кліент Telegram, заснаваны на афіцыйным зыходным кодзе!</string>
+    <string name="AboutReverseDescription">Эксперыментальны кліент Telegram, заснаваны на афіцыйным зыходным кодзе!</string>
     <string name="Channel">Канал</string>
     <string name="Crowdin">Пераклад</string>
     <string name="SourceCode">Зыходны код</string>
@@ -133,7 +133,7 @@ CameraX падтрымліваецца толькі на
     <string name="RememberLastUsedCamera">Памятаць апошнюю выкарыстаную камеру</string>
     <string name="RememberLastUsedCameraInfo">Пры запісе відэапаведамленняў будзе выбрана камера, якая выкарыстоўвалася апошняй.</string>
     <string name="PauseOnMinimize">Аўта-паўза</string>
-    <string name="PauseOnMinimizeInfo">Прыпыняе прайграванне відэа, калі прылада заблакавана або exteraGram згорнуты.</string>
+    <string name="PauseOnMinimizeInfo">Прыпыняе прайграванне відэа, калі прылада заблакавана або reverseGram згорнуты.</string>
     <string name="DisablePlayback">Адключыць прайграванне</string>
     <string name="DisablePlaybackInfo">Адключае прайграванне пры націску кнопкі гучнасці.</string>
     <!--  Boost  -->
@@ -172,7 +172,7 @@ CameraX падтрымліваецца толькі на
     <string name="Datacenter">Дата-цэнтр</string>
     <!--  Other  -->
     <string name="RestartRequired">Перапусціце прыкладанне каб захаваць змены.</string>
-    <string name="ResetSettingsBulletin">**exteraGram** Налады былі скінуты.</string>
+    <string name="ResetSettingsBulletin">**reverseGram** Налады былі скінуты.</string>
     <string name="UserNotFound">Карыстальнік з гэтым **ID** не знойдзены.</string>
     <string name="PhotoCopied">Фота скапіравана ў буфер абмену.</string>
     <string name="MutualContact">узаемны кантакт</string>

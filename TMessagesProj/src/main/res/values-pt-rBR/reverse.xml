@@ -10,10 +10,10 @@
 
 -->
 <resources>
-    <string name="Preferences">Preferências exteraGram</string>
+    <string name="Preferences">Preferências reverseGram</string>
     <!-- Main Menu -->
     <string name="Links">Links</string>
-    <string name="AboutExteraDescription">Cliente Experimental do Telegram baseado em fontes oficiais do Telegram!</string>
+    <string name="AboutReverseDescription">Cliente Experimental do Telegram baseado em fontes oficiais do Telegram!</string>
     <string name="Channel">Canal</string>
     <string name="Crowdin">Traduza</string>
     <string name="SourceCode">Código-fonte</string>
@@ -130,7 +130,7 @@
     <string name="RememberLastUsedCamera">Lembrar última câmera usada</string>
     <string name="RememberLastUsedCameraInfo">Ao capturar mensagens de vídeo, a última câmera usada será selecionada.</string>
     <string name="PauseOnMinimize">Pausa automática</string>
-    <string name="PauseOnMinimizeInfo">Pausa uma reprodução de vídeo quando o dispositivo está bloqueado ou o exteraGram é minimizado.</string>
+    <string name="PauseOnMinimizeInfo">Pausa uma reprodução de vídeo quando o dispositivo está bloqueado ou o reverseGram é minimizado.</string>
     <string name="DisablePlayback">Desativar a reprodução</string>
     <string name="DisablePlaybackInfo">Desativa a reprodução quando o botão de volume é pressionado.</string>
     <!-- Boost -->
@@ -169,7 +169,7 @@
     <string name="Datacenter">Datacenter</string>
     <!-- Other -->
     <string name="RestartRequired">Reinicie a app para fazer efeito.</string>
-    <string name="ResetSettingsBulletin">As preferências **exteraGram** foram redefinidas.</string>
+    <string name="ResetSettingsBulletin">As preferências **reverseGram** foram redefinidas.</string>
     <string name="UserNotFound">Usuário com esse **ID** não encontrado.</string>
     <string name="PhotoCopied">Foto copiada para área de transferência.</string>
     <string name="MutualContact">contato mútuo</string>

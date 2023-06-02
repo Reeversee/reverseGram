@@ -12988,7 +12988,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             Long emojiStatusId = UserObject.getEmojiStatusDocumentId(currentUser);
             if (emojiStatusId != null) {
                 return emojiStatusId;
-            } else if (ReverseConfig.isExteraDev(currentUser)) {
+            } else if (ReverseConfig.isReverseDev(currentUser)) {
                 return ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.ic_status_arrow).mutate();
             } else if (currentUser.premium) {
                 return ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_premium_liststar).mutate();

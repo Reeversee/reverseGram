@@ -312,7 +312,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 } else {
                     nameLeft = AndroidUtilities.dp(11);
                 }
-                updateStatus(drawCheck, ReverseConfig.isExtera(chat), null, false);
+                updateStatus(drawCheck, ReverseConfig.isReverse(chat), null, false);
             } else if (user != null) {
                 dialog_id = user.id;
                 if (!LocaleController.isRTL) {
@@ -323,7 +323,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 nameLockTop = AndroidUtilities.dp(21);
                 drawCheck = user.verified;
                 drawPremium = !savedMessages && MessagesController.getInstance(currentAccount).isPremiumUser(user);
-                updateStatus(drawCheck, ReverseConfig.isExteraDev(user), user, false);
+                updateStatus(drawCheck, ReverseConfig.isReverseDev(user), user, false);
             } else if (contact != null) {
                 if (!LocaleController.isRTL) {
                     nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
@@ -640,7 +640,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 }
             }
             if (!continueUpdate && (mask & MessagesController.UPDATE_MASK_EMOJI_STATUS) != 0 && user != null) {
-                updateStatus(user.verified, ReverseConfig.isExteraDev(user), user, true);
+                updateStatus(user.verified, ReverseConfig.isReverseDev(user), user, true);
             }
             if (!continueUpdate && ((mask & MessagesController.UPDATE_MASK_NAME) != 0 && user != null) || (mask & MessagesController.UPDATE_MASK_CHAT_NAME) != 0 && chat != null) {
                 String newName;

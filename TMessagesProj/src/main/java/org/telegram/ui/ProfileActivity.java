@@ -465,7 +465,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int passwordSuggestionRow;
     private int settingsSectionRow;
     private int settingsSectionRow2;
-    private int exteraRow;
+    private int reverseRow;
     private int notificationRow;
     private int languageRow;
     private int privacyRow;
@@ -3303,7 +3303,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 ChatUsersActivity fragment = new ChatUsersActivity(args);
                 fragment.setInfo(chatInfo);
                 presentFragment(fragment);
-            } else if (position == exteraRow) {
+            } else if (position == reverseRow) {
                 presentFragment(new MainPreferencesActivity());
             } else if (position == notificationRow) {
                 presentFragment(new NotificationsSettingsActivity());
@@ -7028,7 +7028,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         passwordSuggestionRow = -1;
         settingsSectionRow = -1;
         settingsSectionRow2 = -1;
-        exteraRow = -1;
+        reverseRow = -1;
         notificationRow = -1;
         languageRow = -1;
         premiumRow = -1;
@@ -7133,7 +7133,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 settingsSectionRow2 = rowCount++;
-                exteraRow = rowCount++;
+                reverseRow = rowCount++;
                 chatRow = rowCount++;
                 privacyRow = rowCount++;
                 notificationRow = rowCount++;
@@ -7600,7 +7600,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         rightIconIsPremium = false;
                         rightIcon = getEmojiStatusDrawable(user.emoji_status, false, false, a);
                         nameTextViewRightDrawableContentDescription = LocaleController.getString("AccDescrPremium", R.string.AccDescrPremium);
-                    } else if (ReverseConfig.isExteraDev(user)){
+                    } else if (ReverseConfig.isReverseDev(user)){
                         rightIcon = getArrowDrawable();
                     } else if (getMessagesController().isPremiumUser(user)) {
                         rightIconIsStatus = false;
@@ -7623,7 +7623,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         rightIconIsStatus = true;
                         rightIconIsPremium = false;
                         rightIcon = getEmojiStatusDrawable(user.emoji_status, true, true, a);
-                    } else if (ReverseConfig.isExteraDev(user)){
+                    } else if (ReverseConfig.isReverseDev(user)){
                         rightIcon = getArrowDrawable();
                     } else if (getMessagesController().isPremiumUser(user)) {
                         rightIconIsStatus = false;
@@ -7850,7 +7850,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else if (chat.verified) {
                         nameTextView[a].setRightDrawable(getVerifiedCrossfadeDrawable());
                         nameTextViewRightDrawableContentDescription = LocaleController.getString("AccDescrVerified", R.string.AccDescrVerified);
-                    } else if (ReverseConfig.isExtera(chat)){
+                    } else if (ReverseConfig.isReverse(chat)){
                         nameTextView[a].setRightDrawable(getArrowDrawable());
                     } else {
                         nameTextView[a].setRightDrawable(null);
@@ -7861,7 +7861,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         nameTextView[a].setRightDrawable(getScamDrawable(chat.scam ? 0 : 1));
                     } else if (chat.verified) {
                         nameTextView[a].setRightDrawable(getVerifiedCrossfadeDrawable());
-                    } else if (ReverseConfig.isExtera(chat)){
+                    } else if (ReverseConfig.isReverse(chat)){
                         nameTextView[a].setRightDrawable(getArrowDrawable());
                     } else if (getMessagesController().isDialogMuted(-chatId, topicId)) {
                         nameTextView[a].setRightDrawable(getThemedDrawable(Theme.key_drawable_muteIconDrawable));
@@ -9320,7 +9320,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         textCell.setTextAndValueAndIcon(LocaleController.getString("Language", R.string.Language), LocaleController.getCurrentLanguageName(), false, R.drawable.msg2_language, false);
                         if (!ReverseConfig.useSolarIcons)
                             textCell.setImageLeft(23);
-                    } else if (position == exteraRow) {
+                    } else if (position == reverseRow) {
                         textCell.setTextAndIcon(LocaleController.getString("Preferences", R.string.Preferences), R.drawable.etg_settings, true);
                     } else if (position == notificationRow) {
                         textCell.setTextAndIcon(LocaleController.getString("NotificationsAndSounds", R.string.NotificationsAndSounds), R.drawable.msg2_notifications, true);
@@ -9566,7 +9566,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         position == languageRow || position == setUsernameRow || position == idDcRow || position == bioRow ||
                         position == versionRow || position == dataRow || position == chatRow ||
                         position == questionRow || position == devicesRow || position == filtersRow || position == stickersRow ||
-                        position == policyRow || position == sendLogsRow || position == sendLastLogsRow || position == exteraRow ||
+                        position == policyRow || position == sendLogsRow || position == sendLastLogsRow || position == reverseRow ||
                         position == clearLogsRow || position == switchBackendRow || position == setAvatarRow ||
                         position == addToGroupButtonRow || position == premiumRow || position == liteModeRow;
             }
@@ -9605,7 +9605,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (position == settingsTimerRow || position == settingsKeyRow || position == reportRow || position == reportReactionRow ||
                     position == subscribersRow || position == subscribersRequestsRow || position == administratorsRow || position == blockedUsersRow ||
                     position == addMemberRow || position == joinRow || position == unblockRow ||
-                    position == sendMessageRow || position == notificationRow || position == exteraRow || position == privacyRow ||
+                    position == sendMessageRow || position == notificationRow || position == reverseRow || position == privacyRow ||
                     position == languageRow || position == dataRow || position == chatRow ||
                     position == questionRow || position == devicesRow || position == filtersRow || position == stickersRow ||
                     position == policyRow || position == sendLogsRow || position == sendLastLogsRow ||
@@ -10782,7 +10782,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             put(++pointer, passwordSuggestionSectionRow, sparseIntArray);
             put(++pointer, settingsSectionRow, sparseIntArray);
             put(++pointer, settingsSectionRow2, sparseIntArray);
-            put(++pointer, exteraRow, sparseIntArray);
+            put(++pointer, reverseRow, sparseIntArray);
             put(++pointer, notificationRow, sparseIntArray);
             put(++pointer, languageRow, sparseIntArray);
             put(++pointer, premiumRow, sparseIntArray);

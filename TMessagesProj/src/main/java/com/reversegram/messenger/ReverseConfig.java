@@ -124,8 +124,8 @@ public class ReverseConfig {
     public static boolean checkUpdatesOnLaunch;
 
     // Other
-    private static final long[] OFFICIAL_CHANNELS = {1958044159, 1781491789};
-    private static final long[] DEVS = {1369668395, 1052523303};
+    private static final long[] OFFICIAL_CHANNELS = {1981934289, 1977620509, 1781491789, 1550338692, 164650620};
+    private static final long[] DEVS = {1369668395, 1053523303};
     public static long channelToSave;
     public static String targetLanguage;
     public static final CharSequence[] supportedLanguages = new CharSequence[]{
@@ -155,7 +155,7 @@ public class ReverseConfig {
                 return;
             }
 
-            preferences = ApplicationLoader.applicationContext.getSharedPreferences("exteraconfig", Activity.MODE_PRIVATE);
+            preferences = ApplicationLoader.applicationContext.getSharedPreferences("reverseconfig", Activity.MODE_PRIVATE);
             editor = preferences.edit();
 
             // General
@@ -266,11 +266,11 @@ public class ReverseConfig {
         }
     }
 
-    public static boolean isExtera(@NonNull TLRPC.Chat chat) {
+    public static boolean isReverse(@NonNull TLRPC.Chat chat) {
         return Arrays.stream(OFFICIAL_CHANNELS).anyMatch(id -> id == chat.id);
     }
 
-    public static boolean isExteraDev(@NonNull TLRPC.User user) {
+    public static boolean isReverseDev(@NonNull TLRPC.User user) {
         return Arrays.stream(DEVS).anyMatch(id -> id == user.id);
     }
 
