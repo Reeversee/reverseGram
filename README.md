@@ -10,6 +10,3 @@ Experimental **third-party** Telegram client based on [official sources](https:/
 ## Thanks to:
 - [Telegram](https://github.com/DrKLO/Telegram)
 - [exteraGram](https://github.com/exteraSquad/exteraGram)
-- [Nekogram](https://gitlab.com/Nekogram/Nekogram) and [Nekogram X](https://github.com/NekoX-Dev/NekoX)
-- [Catogram](https://github.com/Catogram/Catogram) and [Catogram X](https://github.com/CatogramX/CatogramX)
-- [OwlGram](https://github.com/OwlGramDev/OwlGram)
