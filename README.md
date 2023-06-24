@@ -3,9 +3,10 @@
 
 Experimental **third-party** Telegram client based on [exteraGram](https://github.com/exteraSquad/exteraGram).
 
-[![Channel](https://img.shields.io/badge/Channel-Telegram-blue.svg)](https://t.me/reverseGram)
-[![Chats](https://img.shields.io/badge/Chats-Telegram-blue.svg)](https://t.me/reeverseChat)
-[![Downloads](https://img.shields.io/badge/Download%20at%20-%20Telegram-blue.svg)](https://t.me/reverseGram)
+[![Github Stars](https://img.shields.io/github/stars/Reeversee/reverseGram?color=%2364f573&style=for-the-badge)](https://github.com/Reeversee/reverseGram/stargazers) 
+ [![Github License](https://img.shields.io/github/license/Reeversee/reverseGram?color=%2364f573&style=for-the-badge)](https://github.com/Reeversee/reverseGram/blob/master/COPYING) 
+ [![Github Downloads](https://img.shields.io/github/downloads/Reeversee/reverseGram/total.svg?color=%23f5ad64&style=for-the-badge)](https://github.com/Reeversee/reverseGram/releases/) 
+ [![Github Latest](https://img.shields.io/github/v/release/Reeversee/reverseGram?display_name=tag&color=%23f5ad64&style=for-the-badge)](https://github.com/Reeversee/reverseGram/releases/latest)
 
 ## Thanks to:
 - [Telegram](https://github.com/DrKLO/Telegram)
