@@ -1,5 +1,4 @@
 ## reverseGram
-*[Licensed under the GNU General Public License v2.0](https://github.com/Reeversee/reverseGram/blob/main/LICENSE)*
 
 Experimental **third-party** Telegram client based on [exteraGram](https://github.com/exteraSquad/exteraGram).
 
