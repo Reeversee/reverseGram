@@ -11903,7 +11903,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     updateReactionsMentionButton(true);
                 }
                 getDownloadController().checkUnviewedDownloads(messageCell.getId(), dialog_id);
-                boolean allowPlayEffect = false; // ExteraConfig.premiumAutoPlayback && ((messageObject.messageOwner.media != null && !messageObject.messageOwner.media.nopremium) || (messageObject.isAnimatedEmojiStickerSingle() && dialog_id > 0));
+                boolean allowPlayEffect = false; // ReverseConfig.premiumAutoPlayback && ((messageObject.messageOwner.media != null && !messageObject.messageOwner.media.nopremium) || (messageObject.isAnimatedEmojiStickerSingle() && dialog_id > 0));
                 if ((chatListItemAnimator == null || !chatListItemAnimator.isRunning()) && (!messageObject.isOutOwner() || messageObject.forcePlayEffect) && allowPlayEffect && !messageObject.messageOwner.premiumEffectWasPlayed && (messageObject.isPremiumSticker() || messageObject.isAnimatedEmojiStickerSingle()) && emojiAnimationsOverlay.isIdle() && emojiAnimationsOverlay.checkPosition(messageCell, chatListViewPaddingTop, chatListView.getMeasuredHeight() - blurredViewBottomOffset)) {
                     emojiAnimationsOverlay.onTapItem(messageCell, ChatActivity.this, false);
                 } else if (messageObject.isAnimatedAnimatedEmoji()) {
